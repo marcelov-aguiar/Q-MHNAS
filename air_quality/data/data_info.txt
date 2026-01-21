@@ -1,7 +1,7 @@
 dataset: air_quality_train
 num_classes: 24
 num_sensors: 5
-seed: 1767470429
+seed: 1768515475
 shape:
 - null
 - null
