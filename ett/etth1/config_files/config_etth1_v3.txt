@@ -1,0 +1,156 @@
+# Configuration file
+# Esse arquivo é para testar a evolucao apos a refatoracao do codigo do input e do config.txt
+# ele ja tem as probabilidades iguais e blocos de convolucao semelhante ao trabalho relacionado
+# teoricamente espero bons resultados
+# coloquei allow_duplicate_architectures como True pois ainda nao implementei deteccao de
+# net e parametros em conjunto que sao duplicados
+
+# Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
+# Agora o calculo da metrica esta por amostra e não batch
+# v0 do ett baseado nas funcoes e configuracoes do turbofan
+# semelhante ao v0, mas com diferentes blocos de convolucao
+# Semelhante ao v1, mas parametros do Q-NAS e epocas alteradas
+# semelhante ao v2, mas com diferentes blocos de convolucao em cada head
+
+
+QNAS:
+    crossover_rate: 0.5
+    max_generations: 50
+    max_num_nodes: 6
+    num_quantum_ind: 4
+    penalize_number: 3
+    repetition: 5
+    replace_method: best
+    update_quantum_gen: 2
+    update_quantum_rate: 0.3
+    save_data_freq: 10
+    crossover_frequency: 5
+    pop_crossover_rate: 0.25
+    pop_crossover_method: hux # hux, uniform
+    patience: 10
+    early_stopping: False
+    en_pop_crossover: False
+    max_update: 0.15
+
+    params_type:
+        decay: float
+        learning_rate: float
+        weight_decay: int
+        lstm_1: int
+        lstm_2: int
+        sequence_length: int
+
+
+    params_ranges:
+        decay: 0.9
+        learning_rate: 0.001
+        weight_decay: 1.0e-4
+        lstm_1: [4, 20]
+        lstm_2: [4, 15]
+        sequence_length: [1, 7]
+
+    function_dict:  {
+        # --- GRUPO 1: Detalhes Finos (Sem redução de tamanho) ---
+        'conv_3_1_8':   {'function': 'Conv1DBlock', 'params': {'kernel': 3, 'strides': 1, 'filters': 8}, 'prob': 1/9},
+        'conv_3_1_16':  {'function': 'Conv1DBlock', 'params': {'kernel': 3, 'strides': 1, 'filters': 16}, 'prob': 1/9},
+
+        # --- GRUPO 2: Padrões de Curto Prazo e Redução Leve (Stride 2) ---
+        # Aumentamos filtros para 32 para capturar mais variações.
+        'conv_5_2_16':  {'function': 'Conv1DBlock', 'params': {'kernel': 5, 'strides': 2, 'filters': 16}, 'prob': 1/9},
+        'conv_5_2_32':  {'function': 'Conv1DBlock', 'params': {'kernel': 5, 'strides': 2, 'filters': 32}, 'prob': 1/9},
+
+        # --- GRUPO 3: Padrões Diários e Alta Redução (Stride 4) ---
+        'conv_7_4_32':  {'function': 'Conv1DBlock', 'params': {'kernel': 7, 'strides': 4, 'filters': 32}, 'prob': 1/9},
+        'conv_7_4_64':  {'function': 'Conv1DBlock', 'params': {'kernel': 7, 'strides': 4, 'filters': 64}, 'prob': 1/9},
+
+        # --- GRUPO 4: Contexto Longo
+        # Tenta ver quase meio dia de contexto se a janela permitir.
+        'conv_13_2_32':  {'function': 'Conv1DBlock', 'params': {'kernel': 13, 'strides': 2, 'filters': 32}, 'prob': 1/9},
+        'conv_13_1_16':  {'function': 'Conv1DBlock', 'params': {'kernel': 13, 'strides': 1, 'filters': 16}, 'prob': 1/9},
+
+        'no_op':        {'function': 'NoOp', 'params': {}, 'prob': 1/9}
+    }
+
+train:
+    batch_size: 64
+    eval_batch_size: 64
+    max_epochs: 30
+    epochs_to_eval: 29
+    optimizer:
+        name: RMSprop #RMSprop, Adam, AdamW, SGD
+        params:
+            lr: 0.001
+            alpha: 0.9
+            eps: 0.0000001
+            momentum: 0.0
+            centered: True
+    fitness_metric: best_loss
+    lr_scheduler: TFScheduler # for retrain
+    lr_scheduler_train: TFScheduler
+    criterion:
+        name: MSELoss #CrossEntropyLoss, MSELoss, L1Loss, RMSELoss
+        params:
+            reduction: mean
+    mo_metric_base: loss
+    mixed_precision: False
+    available_gpus: [0, 1] # gpu0, gpu1, gpu2 [0, 1, 2]
+    device: cuda:0
+    allow_duplicate_architectures: False
+
+    # Dataset
+    dataset: etth1_train
+    file_extension: parquet
+    exp_path_base: exp_etth1
+    exp: exp_v3
+    log_level: INFO
+    repeat: 3 # repetions for search
+    dataloader_class: Etth1MultiHeadDataLoader
+
+    data_augmentation: False
+    subtract_mean: True
+    limit_data: True
+    limit_data_value: 10000
+    num_workers: 0
+    num_classes: 24
+    task: regression
+    dataset_type: multihead
+    target_normalization:
+        name: sklearn.preprocessing.StandardScaler
+        path: scaler_y_etth1.save
+        params:
+        replace: False
+
+    # Tensorflow
+    save_checkpoints_epochs: 5
+    save_summary_epochs: 0.25
+    threads: 10
+
+    # penalization parameters - scalarized fitness
+    max_params: 114090 # 1.9M
+    max_inference_time: 1000 # us
+
+    # Network structure Configuration
+    network_config: default
+    network_gap: False
+
+    # Params for retrain:
+    batch_size_retrain: 64
+    eval_batch_size_retrain: 64
+    max_epochs_retrain: 50
+    num_repetitions_retrain: 5 # repetions for retrain
+
+    # problem-specific parameters
+    extra_params:
+        shared_head_architecture: False
+        num_sensors: 7
+        dataset_test: etth1_test
+        file_extension_test: parquet
+        dataset_val: etth1_val
+        file_extension_val: parquet
+        cols_non_sensor: ['unit_nr', 'Date']
+        stride: 1
+        in_channels: 1
+        lstm_multiplier: 20
+        campaign_name: unit_nr
+        target_name: OT
+        save_predictions_to_txt: False
