@@ -15,7 +15,8 @@ class BaseDataLoader(ABC):
     
     @abstractmethod
     def get_train_val_test_dataset(self,
-                                   individual: List[str]
+                                   individual: List[str],
+                                   decoded_params = None
                                  ) -> Dict:
         """Retorna dataset de treino, validação e teste"""
         pass

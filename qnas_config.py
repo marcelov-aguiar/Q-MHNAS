@@ -57,7 +57,9 @@ class ConfigParameters(object):
                         'n_filters': (1, 10),
                         'n_conv_layer': (1, 2),
                         'lstm_1': (4, 20),
-                        'lstm_2': (4, 15),}
+                        'lstm_2': (4, 15),
+                        'sequence_length': (1, 30)
+                        }
 
             for key, value in ranges.items():
                 if type(value) is list:
@@ -374,6 +376,7 @@ class ConfigParameters(object):
         best_result_folder = os.path.join(experiment_path, best_result_folder[0])
         with open(os.path.join(best_result_folder, 'training_params.txt'), 'r') as file:
                 best_individual_info = yaml.safe_load(file)
+        params = best_individual_info.get('decoded_params', None)
         net_list = best_individual_info.get('net_list', [])
         generation = best_individual_info.get('generation', 0)
         individual = best_individual_info.get('individual', 0)
@@ -384,7 +387,7 @@ class ConfigParameters(object):
                 generation = int(matches.group(1))
                 individual = int(matches.group(2))
 
-        self.evolved_params = {'params': None, 'net': net_list, 'generation': generation, 'individual': individual}
+        self.evolved_params = {'params': params, 'net': net_list, 'generation': generation, 'individual': individual}
 
     def override_train_params(self, new_params_dict):
         """ Override *self.train_spec* parameters with the ones in *new_params_dict*. Update

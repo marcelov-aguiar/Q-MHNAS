@@ -1,12 +1,12 @@
 dataset: air_quality_train
-num_classes: 24
+num_classes: 1
 num_sensors: 5
-seed: 1768515475
+seed: 1770096391
 shape:
 - null
 - null
 - null
 task: regression
-test_records: 1826
-train_records: 6502
-valid_records: 888
+test_records: 1849
+train_records: 6525
+valid_records: 911

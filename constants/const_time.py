@@ -1,2 +1,4 @@
 HOUR_TO_SECOND = 3600
 DATE_FORMAT = "%Y-%m-%d %H:%M:%S.%f"
+
+DAY_TO_HOUR = 24

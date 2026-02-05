@@ -35,7 +35,7 @@ class AirQualityMultiHeadDataLoader(BaseDataLoader):
 		self.info_dict['task'] = self.params["task"]
 		return self.info_dict
 
-	def get_train_val_test_dataset(self, individual: List[str]):
+	def get_train_val_test_dataset(self, individual: List[str], decoded_params=None):
 		"""
 		Carrega os parquets processados e aplica apenas a Janela Deslizante.
 		"""

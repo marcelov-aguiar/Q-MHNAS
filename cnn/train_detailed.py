@@ -23,6 +23,8 @@ import torch.nn.init as init
 import random
 import math
 import pandas as pd
+from metrics.metric_tracker import MetricTracker
+
 
 current_directory = os.path.dirname(os.path.dirname(__file__))
 log_directory = os.path.join(current_directory, 'logs')
@@ -43,77 +45,83 @@ class RMSELoss(nn.Module):
         return torch.sqrt(self.mse(yhat, y) + self.eps)
 
 
-class MetricTracker:
-    """
-    A class for tracking evaluation metrics during training and validation,
-    supporting both classification and regression tasks.
-
-    Parameters
-    ----------
-    task : str
-        The type of task. Must be either 'multi-class' for classification or 'regression' for regression problems.
-
-    Attributes
-    ----------
-    task : str
-        The task type.
-    total : float
-        Accumulated number of samples or accumulated loss value.
-    correct : int
-        Accumulated number of correct predictions (only for classification).
-    count : int
-        Number of batches (used for averaging loss in regression).
-    """
-
-    def __init__(self, task: str):
-        self.task = task
-        self.total = 0
-        self.correct = 0
-        self.count = 0
-
-    def update(self, y_logits: torch.Tensor, labels: torch.Tensor):
-        """
-        Update the internal state based on model predictions and ground truth labels.
-
-        For classification tasks ('multi-class'), accumulates the number of correct predictions and total samples.
-        For regression tasks ('regression'), accumulates the root mean squared error (RMSE) over batches.
-
-        Parameters
-        ----------
-        y_logits : torch.Tensor
-            Model predictions. Shape: (batch_size, num_classes) for classification,
-            (batch_size, 1) or (batch_size,) for regression.
-
-        labels : torch.Tensor
-            Ground truth labels. Shape should match y_logits accordingly.
-        """
-        if self.task == 'multi-class' or self.task == 'classification':
-            _, predicted = y_logits.max(1)
-            self.total += labels.size(0)
-            self.correct += predicted.eq(labels).sum().item()
-        elif self.task == 'regression':
-            sse = torch.nn.functional.mse_loss(y_logits, labels, reduction='sum').item()
-            self.total += sse
-            self.count += labels.size(0)
-        else:
-            raise ValueError(f"Unknown task type: {self.task}")
-
-    def result(self) -> float:
-        """
-        Compute the final metric based on accumulated values.
-
-        Returns
-        -------
-        float
-            The average metric:
-            - Accuracy (%) for classification.
-            - Root Mean Squared Error (RMSE) for regression.
-        """
-        if self.task == 'multi-class' or self.task == 'classification':
-            return 100.0 * self.correct / self.total if self.total > 0 else 0.0
-        elif self.task == 'regression':
-            mse = self.total / self.count if self.count > 0 else 0.0
-            return float(np.sqrt(mse))
+# class MetricTracker:
+#     """
+#     A class for tracking evaluation metrics during training and validation,
+#     supporting both classification and regression tasks.
+# 
+#     Parameters
+#     ----------
+#     task : str
+#         The type of task. Must be either 'multi-class' for classification or 'regression' for regression problems.
+# 
+#     Attributes
+#     ----------
+#     task : str
+#         The task type.
+#     total : float
+#         Accumulated number of samples or accumulated loss value.
+#     correct : int
+#         Accumulated number of correct predictions (only for classification).
+#     count : int
+#         Number of batches (used for averaging loss in regression).
+#     """
+# 
+#     def __init__(self, task: str):
+#         self.task = task
+#         self.total = 0
+#         self.correct = 0
+#         self.count = 0
+# 
+#     def update(self, y_logits: torch.Tensor, labels: torch.Tensor):
+#         """
+#         Update the internal state based on model predictions and ground truth labels.
+# 
+#         For classification tasks ('multi-class'), accumulates the number of correct predictions and total samples.
+#         For regression tasks ('regression'), accumulates the root mean squared error (RMSE) over batches.
+# 
+#         Parameters
+#         ----------
+#         y_logits : torch.Tensor
+#             Model predictions. Shape: (batch_size, num_classes) for classification,
+#             (batch_size, 1) or (batch_size,) for regression.
+# 
+#         labels : torch.Tensor
+#             Ground truth labels. Shape should match y_logits accordingly.
+#         """
+#         if self.task == 'multi-class' or self.task == 'classification':
+#             _, predicted = y_logits.max(1)
+#             self.total += labels.size(0)
+#             self.correct += predicted.eq(labels).sum().item()
+#         
+#         elif self.task == 'regression':
+#             # reduction='sum' soma o erro de TODOS os elementos (Batch * Horizon)
+#             sse = torch.nn.functional.mse_loss(y_logits, labels, reduction='sum').item()
+#             self.total += sse
+#             
+#             # CORREÇÃO: Usar .numel() para contar (Batch * Horizon)
+#             # Antes estava labels.size(0) que contava apenas o Batch
+#             self.count += labels.numel() 
+#             
+#         else:
+#             raise ValueError(f"Unknown task type: {self.task}")
+# 
+#     def result(self) -> float:
+#         """
+#         Compute the final metric based on accumulated values.
+# 
+#         Returns
+#         -------
+#         float
+#             The average metric:
+#             - Accuracy (%) for classification.
+#             - Root Mean Squared Error (RMSE) for regression.
+#         """
+#         if self.task == 'multi-class' or self.task == 'classification':
+#             return 100.0 * self.correct / self.total if self.total > 0 else 0.0
+#         elif self.task == 'regression':
+#             mse = self.total / self.count if self.count > 0 else 0.0
+#             return float(np.sqrt(mse))
 
 
 def lr_schedule(epoch):
@@ -493,11 +501,20 @@ def train(model: torch.nn.Module,
     milestones = [0.5 * max_epochs, 0.75 * max_epochs]
 
     best_model_path = os.path.join(params['model_path'], 'best_model.pth')
-    
+
+    sched_params = params.get('extra_params', {}).get('scheduler_params', {})
+
     if params['lr_scheduler'] == 'exponential':
         lr_scheduler = ExponentialLR(optimizer, gamma=0.9)
     elif params['lr_scheduler'] == 'reduce_on_plateau':
-        lr_scheduler = ReduceLROnPlateau(optimizer, patience=5, factor=0.1)
+        lr_scheduler = ReduceLROnPlateau(
+            optimizer, 
+            mode='min', 
+            factor=sched_params.get('factor', 0.5),   
+            patience=sched_params.get('patience', 10), 
+            verbose=False,
+            min_lr=1e-6
+        )
     elif params['lr_scheduler'] == 'cosine':
         lr_scheduler = CosineAnnealingLR(optimizer, T_max=max_epochs, eta_min=0, last_epoch=-1)
     elif params['lr_scheduler'] == 'multistep':
@@ -728,7 +745,11 @@ def train_and_eval(params: Dict[str, Any],
 
     target_scaler = None
     if ('target_normalization' in params) and (params['target_normalization']["name"] is not None):
-        target_scaler_name = params['target_normalization']['path'].replace('.save', '_'+params['exp']+'.save')
+        if 'replace' in params['target_normalization'] and params['target_normalization']["replace"]:
+            target_scaler_name = params['target_normalization']['path'].replace('.save', '_'+params['exp']+'.save')
+        else:
+            target_scaler_name = params['target_normalization']['path']
+
         target_scaler_path = os.path.join(params['data_path'], 'scaler', target_scaler_name)
         if os.path.exists(target_scaler_path):
             target_scaler = joblib.load(target_scaler_path)

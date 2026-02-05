@@ -352,7 +352,7 @@ def log_repeat_run(base_exp_path: str, repeat_id: int, retrain_data_list: List[D
                         dados=data_qnas.data_qnas,
                         geracoes=[0, max(data_qnas.data_qnas.keys())],
                         individual_index=ind_idx,
-                        param_names=['LSTM1', 'LSTM2'],
+                        param_names=list(training_params.training_params['decoded_params'].keys()), # ['LSTM1', 'LSTM2'],
                         show=False
                     )
                     mlflow.log_figure(fig_hp, f"plots/qnas_hyperparams_ind_{ind_idx}.png")

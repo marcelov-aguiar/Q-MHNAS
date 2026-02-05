@@ -196,6 +196,7 @@ class EvalPopulation(object):
 
         for individual, selected_thread, decoded_net, decoded_params, return_val in individuals_selected_thread:
             train_loader, val_loader = self.loader.get_loader(individual=decoded_net,
+                                                              decoded_params=decoded_params,
                                                               pin_memory_device=gpu_device)
             self.train_params['device'] = gpu_device
             train.fitness_calculation(id_num=f"{generation}_{individual}",

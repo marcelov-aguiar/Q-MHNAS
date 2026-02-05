@@ -5,16 +5,16 @@ Chama o run_evolution.py
 import subprocess
 import os
 from util import load_yaml
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 if __name__ == "__main__":
 	base_path = os.path.dirname(os.path.abspath(__file__))
 	
-	run_script = os.path.join(base_path, "run_evolution.py")
+	run_script = os.path.join(base_path, "run_evolution_gpu_2.py")
 	# How to execute: LD_LIBRARY_PATH= python nome_do_arquivo.py
 
 	config_files = [
-		"config_files/config_air_quality_v4.txt"
+		"config_files/config_air_quality_v5.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

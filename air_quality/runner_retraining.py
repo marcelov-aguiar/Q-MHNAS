@@ -15,11 +15,10 @@ if __name__ == "__main__":
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		#"config_files/config_air_quality_v0.txt",
-		"config_files/config_air_quality_v1.txt"
-		#"config_files/config_air_quality_v2.txt",
-		#"config_files/config_air_quality_v3.txt"
-		
+		"config_files/config_air_quality_v6.txt",
+		"config_files/config_air_quality_v7.txt",
+		"config_files/config_air_quality_v8.txt",
+		"config_files/config_air_quality_v9.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

@@ -8,13 +8,14 @@
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
 # Esse config é semelhante ao v5 do turbofan, mas foi adaptado para o air_quality
-# Semelhante ao v0 mas com CNN diferente em cada Head e 100 geracoes
-# Semelhante ao v1 mais com update_quantum_gen 2, update_quantum_rate 0.3 e
+# Semelhante ao v0, mas com update_quantum_gen 2, update_quantum_rate 0.3 e
 # max_update 0.15
+# Semelhante ao v2 mas com saida (num_classes) igual a 1
+
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 100
+    max_generations: 20
     max_num_nodes: 6
     num_quantum_ind: 4
     penalize_number: 3
@@ -68,12 +69,16 @@ QNAS:
 train:
     batch_size: 64
     eval_batch_size: 64
-    max_epochs: 200
-    epochs_to_eval: 199
+    max_epochs: 20
+    epochs_to_eval: 19
     optimizer:
-        name: Adam #RMSprop, Adam, AdamW, SGD
+        name: RMSprop #RMSprop, Adam, AdamW, SGD
         params:
             lr: 0.001
+            alpha: 0.9
+            eps: 0.0000001
+            momentum: 0.0
+            centered: True
     fitness_metric: best_loss
     lr_scheduler: TFScheduler # for retrain
     lr_scheduler_train: TFScheduler
@@ -91,7 +96,7 @@ train:
     dataset: air_quality_train
     file_extension: csv
     exp_path_base: exp_air_quality
-    exp: exp_v100
+    exp: exp_v8
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: AirQualityMultiHeadDataLoader
@@ -101,7 +106,7 @@ train:
     limit_data: True
     limit_data_value: 10000
     num_workers: 0
-    num_classes: 24
+    num_classes: 1
     task: regression
     dataset_type: multihead
     target_normalization:
@@ -113,7 +118,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 1
+    threads: 20
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M
@@ -141,6 +146,6 @@ train:
         sequence_length: 24
         stride: 1
         in_channels: 1
-        lstm_multiplier: 20
+        lstm_multiplier: 1
         campaign_name: unit_nr
         target_name: CO(GT)

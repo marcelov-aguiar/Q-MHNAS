@@ -17,6 +17,8 @@ from typing import Tuple, List
 from multi_head_utils import BaseDataLoader, CustomDatasetMultiHead
 from femto.preprocessing.femto_preprocessing import FemtoMultiHeadDataLoader
 from air_quality.preprocessing.air_quality_preprocessing import AirQualityMultiHeadDataLoader
+from ett.preprocessing.etth_preprocessing import Etth1MultiHeadDataLoader
+
 
 cifar10_info = {
   'dataset': 'CIFAR10',
@@ -323,7 +325,11 @@ class GenericDataLoader:
 
     util.create_info_file(out_path=self.params['data_path'], info_dict=self.info_dict)
 
-  def get_loader(self, individual=None, for_train=True, pin_memory_device="cuda"):
+  def get_loader(self,
+                 individual=None,
+                 decoded_params=None,
+                 for_train=True,
+                 pin_memory_device="cuda"):
     """
     Get data loader for training or validation/testing.
 
@@ -340,7 +346,8 @@ class GenericDataLoader:
     dataloader: BaseDataLoader = dataloader_cls(params=self.params, info=self.info_dict)
 
     train_dataset, valid_dataset, test_dataset = \
-      dataloader.get_train_val_test_dataset(individual=individual)
+      dataloader.get_train_val_test_dataset(individual=individual,
+                                            decoded_params=decoded_params)
     
     drop_last = True if self.params['dataset'].lower() == 'organamnist' else False
         
