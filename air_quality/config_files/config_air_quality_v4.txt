@@ -10,6 +10,7 @@
 # Esse config é semelhante ao v5 do turbofan, mas foi adaptado para o air_quality
 # Semelhante ao v0, mas com update_quantum_gen 2, update_quantum_rate 0.3 e
 # max_update 0.15
+# Bug da metrica corrigido
 # Semelhante ao v2 mas com mudancas significativas para ser semelhante ao trabalho
 # relacionado e ao teste empirico realizado
 

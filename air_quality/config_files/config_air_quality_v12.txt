@@ -13,12 +13,12 @@
 # Bug da metrica corrigido
 # Semelhante ao v2 mas com mudancas significativas para ser semelhante ao trabalho
 # relacionado e ao teste empirico realizado
-# Semelhante ao v4 mas com CNN diferente em cada head
+# Semelhante a v4 e v10 mas com horizon (sequence_length) variável
 
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 100
+    max_generations: 50
     max_num_nodes: 6
     num_quantum_ind: 4
     penalize_number: 3
@@ -41,6 +41,7 @@ QNAS:
         weight_decay: int
         lstm_1: int
         lstm_2: int
+        sequence_length: int
 
 
     params_ranges:
@@ -49,6 +50,7 @@ QNAS:
         weight_decay: 1.0e-4
         lstm_1: [4, 12]
         lstm_2: [4, 10]
+        sequence_length: [5, 24]
 
     function_dict:  {
         'conv_3_1_8':  {'function': 'Conv1DBlock', 'params': {'kernel': 3, 'strides': 1, 'filters': 8}, 'prob': 1.0/10.0},
@@ -95,7 +97,7 @@ train:
     dataset: air_quality_train
     file_extension: csv
     exp_path_base: exp_air_quality
-    exp: exp_v5
+    exp: exp_v12
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: AirQualityMultiHeadDataLoader
@@ -117,7 +119,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 20
+    threads: 16
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M
@@ -135,14 +137,14 @@ train:
 
     # problem-specific parameters
     extra_params:
-        shared_head_architecture: False
+        shared_head_architecture: True
         num_sensors: 5
         dataset_test: air_quality_test
         dataset_val: air_quality_val
         file_extension_test: csv
         file_extension_val: csv
         cols_non_sensor: ['unit_nr', 'Date']
-        sequence_length: 24
+        sequence_length: None
         stride: 1
         in_channels: 1
         lstm_multiplier: 20

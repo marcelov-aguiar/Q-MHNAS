@@ -1,4 +1,6 @@
 import numpy as np
+from numpy.lib.stride_tricks import as_strided
+
 
 class AirQualityWindow(object):
     
@@ -94,32 +96,23 @@ class AirQualityWindow(object):
         return label_array_train
 
     def networkinput_generation(self, seq_array_train, stride, n_window, window_length):
-        '''
-        :param numpy array of sequence (sliced time series)
-        :return: numpy array of network input for training
-        '''
-        # for each sensor: reshape from [samples, timesteps] into [samples, subsequences, timesteps, features]
+        """
+        Versão VETORIZADA: Remove loops Python e usa manipulação de memória direta do NumPy.
+        Input: (samples, sequence_length, sensors)
+        """
+        N, L, S = seq_array_train.shape
+        s0, s1, s2 = seq_array_train.strides
+
+        view = as_strided(
+            seq_array_train,
+            shape=(N, n_window, window_length, S),
+            strides=(s0, stride * s1, s1, s2)
+        )
+
         train_FD_sensor = []
-
-        as_strided = np.lib.stride_tricks.as_strided
-
-        for s_i in range(seq_array_train.shape[2]):
-            window_list = []
-            window_array = np.array([])
-
-            for seq in range(seq_array_train.shape[0]):
-                S = stride
-                s0 = seq_array_train[seq, :, s_i].strides
-                seq_sensor = as_strided(seq_array_train[seq, :, s_i], (n_window, window_length),
-                                        strides=(S * s0[0], s0[0]))
-                #         print (seq_sensor)
-                #         window_array = np.concatenate((window_array, seq_sensor), axis=1)
-                window_list.append(seq_sensor)
-
-            window_array = np.stack(window_list, axis=0)
-            window_array = np.reshape(window_array,
-                                      (window_array.shape[0], window_array.shape[1], window_array.shape[2], 1))
-            # print(window_array.shape)
-            train_FD_sensor.append(window_array)
+        for i in range(S):
+            # Extrai o sensor i, shape (N, n_window, window_length) -> adiciona dim (..., 1)
+            sensor_data = view[..., i].reshape(N, n_window, window_length, 1).copy()
+            train_FD_sensor.append(sensor_data)
 
         return train_FD_sensor

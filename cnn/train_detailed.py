@@ -17,7 +17,13 @@ from typing import Dict, List, Union, Any
 from sklearn.metrics import confusion_matrix
 from cnn import model, input, metrics
 from util import create_info_file, init_log, load_yaml, save_results_file
-from torch.optim.lr_scheduler import ReduceLROnPlateau, ExponentialLR, CosineAnnealingLR, MultiStepLR
+from torch.optim.lr_scheduler import (
+	ReduceLROnPlateau,
+	ExponentialLR,
+	CosineAnnealingLR,
+	MultiStepLR,
+    CosineAnnealingWarmRestarts
+)
 from torch.optim.lr_scheduler import LambdaLR
 import torch.nn.init as init
 import random
@@ -517,6 +523,13 @@ def train(model: torch.nn.Module,
         )
     elif params['lr_scheduler'] == 'cosine':
         lr_scheduler = CosineAnnealingLR(optimizer, T_max=max_epochs, eta_min=0, last_epoch=-1)
+    elif params['lr_scheduler'] == 'cosine_warm_restarts':
+        lr_scheduler = CosineAnnealingWarmRestarts(
+            optimizer, 
+            T_0=sched_params.get('T_0', 20), 
+            T_mult=sched_params.get('T_mult', 2),
+            eta_min=sched_params.get('min_lr', 1e-6)
+        )
     elif params['lr_scheduler'] == 'multistep':
         lr_scheduler = MultiStepLR(optimizer, milestones=milestones, gamma=0.1)
     elif params['lr_scheduler'] == 'LambdaLR':

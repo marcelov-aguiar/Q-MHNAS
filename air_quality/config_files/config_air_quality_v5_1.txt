@@ -14,6 +14,7 @@
 # Semelhante ao v2 mas com mudancas significativas para ser semelhante ao trabalho
 # relacionado e ao teste empirico realizado
 # Semelhante ao v4 mas com CNN diferente em cada head
+# semelhante vo v5 mas com busca com reduce_on_plateau e retreino com cosine_warm_restarts
 
 
 QNAS:
@@ -79,7 +80,7 @@ train:
             eps: 0.0000001
             weight_decay: 0.0001
     fitness_metric: best_loss
-    lr_scheduler: reduce_on_plateau # for retrain
+    lr_scheduler: cosine_warm_restarts # for retrain
     lr_scheduler_train: reduce_on_plateau
     criterion:
         name: MSELoss #CrossEntropyLoss, MSELoss, L1Loss, RMSELoss
@@ -95,7 +96,7 @@ train:
     dataset: air_quality_train
     file_extension: csv
     exp_path_base: exp_air_quality
-    exp: exp_v5
+    exp: exp_v5_1
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: AirQualityMultiHeadDataLoader
@@ -130,7 +131,7 @@ train:
     # Params for retrain:
     batch_size_retrain: 32
     eval_batch_size_retrain: 32
-    max_epochs_retrain: 200
+    max_epochs_retrain: 300
     num_repetitions_retrain: 5 # repetions for retrain
 
     # problem-specific parameters

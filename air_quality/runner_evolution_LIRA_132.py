@@ -16,10 +16,7 @@ if __name__ == "__main__":
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	# TODO: Colocar para rodar na dualGPU, ainda está com a versão antiga
 	config_files = [
-		"config_files/config_air_quality_v0.txt",
-		"config_files/config_air_quality_v1.txt",
-		"config_files/config_air_quality_v2.txt",
-		"config_files/config_air_quality_v3.txt"
+		"config_files/config_air_quality_v12.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

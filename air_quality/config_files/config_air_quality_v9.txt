@@ -12,6 +12,8 @@
 # Semelhante ao v1 mais com update_quantum_gen 2, update_quantum_rate 0.3 e
 # max_update 0.15
 # Semelhante ao v3 mas com saida (num_classes) igual a 1
+# Busca foi feita com a métrica com problema no num_classes igual a 24
+# Não é comparacao justa pq a busca foi feita com a metrica errada: Exp feito para teste e estudo
 
 
 QNAS:

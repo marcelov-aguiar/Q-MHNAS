@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 import os
 import pandas as pd
 import numpy as np
@@ -13,17 +13,31 @@ from multi_head_utils import BaseDataLoader, CustomDatasetMultiHead
 
 
 class AirQualityMultiHeadDataLoader(BaseDataLoader):
+	_CACHE: Dict[str, pd.DataFrame] = {}
+
 	def __init__(self, params: dict, info: dict = {}):
 		super().__init__(params, info)
+		self.cache = self._preload_all_data()
+
+	def _preload_all_data(self) -> dict:
+		"""Lê os CSVs uma única vez no início de tudo."""
+		paths = {
+			'train': os.path.join(self.params['data_path'], f"{self.params['dataset']}.{self.params['file_extension']}"),
+			'val': os.path.join(self.params['data_path'], f"{self.params['extra_params']['dataset_val']}.{self.params['extra_params']['file_extension_val']}"),
+			'test': os.path.join(self.params['data_path'], f"{self.params['extra_params']['dataset_test']}.{self.params['extra_params']['file_extension_test']}")
+		}
+        
+		data_loaded = {}
+		for key, path in paths.items():
+			df = pd.read_csv(path)
+			df["unit_nr"] = 10 # Lógica fixa aplicada uma única vez
+			data_loaded[key] = df
+		return data_loaded
 
 	def get_train_dataset_info(self) -> dict:
-		# Caminho para o arquivo final_train.parquet
-		data_path = os.path.join(self.params['data_path'],
-								 f"{self.params['dataset']}.{self.params['file_extension']}")
-		# Leitura rápida só para pegar colunas
-		data = pd.read_csv(data_path)
+		# Usa o cache para evitar I/O repetido até no info
+		data = self.cache['train']
 
-		# Num sensors = Total - (Metadados Excluídos) - (Estruturais Mantidas)
 		cols_non_sensor = self.params["extra_params"]["cols_non_sensor"]
 
 		cols_sensors = [c for c in data.columns if c not in cols_non_sensor]
@@ -39,37 +53,26 @@ class AirQualityMultiHeadDataLoader(BaseDataLoader):
 		"""
 		Carrega os parquets processados e aplica apenas a Janela Deslizante.
 		"""
-		data_train_path = os.path.join(self.params['data_path'],
-								 f"{self.params['dataset']}.{self.params['file_extension']}")
+		# Carregamento via Cache (Otimização Principal de I/O)
+		df_train = self.cache['train']
+		df_val = self.cache['val']
+		df_test = self.cache['test']
 
-		df_train = pd.read_csv(data_train_path)
+		train_dataset = self.get_train_val_dataset(df_train, individual, decoded_params)
 
-		df_train["unit_nr"] = 10
+		valid_dataset = self.get_train_val_dataset(df_val, individual, decoded_params)
 
-		data_val_path = os.path.join(self.params['data_path'],
-								 f"{self.params['extra_params']['dataset_val']}.{self.params['extra_params']['file_extension_val']}")
-		
-		df_val = pd.read_csv(data_val_path)
-
-		df_val["unit_nr"] = 10
-
-		data_test_path = os.path.join(self.params['data_path'],
-								 f"{self.params['extra_params']['dataset_test']}.{self.params['extra_params']['file_extension_test']}")
-		
-		df_test = pd.read_csv(data_test_path)
-
-		df_test["unit_nr"] = 10
-
-		train_dataset = self.get_train_val_dataset(df_train, individual)
-
-		valid_dataset = self.get_train_val_dataset(df_val, individual)
-
-		test_dataset = self.get_train_val_dataset(df_test, individual)
+		test_dataset = self.get_train_val_dataset(df_test, individual, decoded_params)
 
 		return train_dataset, valid_dataset, test_dataset
 
-	def get_train_val_dataset(self, df_data: pd.DataFrame, individual):
+	def get_train_val_dataset(self, df_data: pd.DataFrame, individual, decoded_params):
 		window_length = self._get_windows_length_from_individual(individual)
+
+		if self.params["extra_params"]["sequence_length"] == 'None':
+			sequence_length = int(decoded_params["sequence_length"])
+		else:
+			sequence_length = self.params["extra_params"]["sequence_length"]
 
 		cols_non_sensor = self.params["extra_params"]["cols_non_sensor"]
 
@@ -81,7 +84,7 @@ class AirQualityMultiHeadDataLoader(BaseDataLoader):
 				cols_sensors=cols_sensors,
 				campaign_name=self.params["extra_params"]["campaign_name"],
 				target_name=self.params["extra_params"]["target_name"],
-				sequence_length=self.params["extra_params"]["sequence_length"],
+				sequence_length=sequence_length,
 				stride=self.params["extra_params"]["stride"],
 				window_length=window_length,
 				horizon=self.params["num_classes"])

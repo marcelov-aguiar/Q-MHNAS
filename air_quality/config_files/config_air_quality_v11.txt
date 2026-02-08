@@ -14,6 +14,7 @@
 # Semelhante ao v2 mas com mudancas significativas para ser semelhante ao trabalho
 # relacionado e ao teste empirico realizado
 # Semelhante ao v4 mas com CNN diferente em cada head
+# Semelhante a v5 mas com horizon igual a 12
 
 
 QNAS:
@@ -95,7 +96,7 @@ train:
     dataset: air_quality_train
     file_extension: csv
     exp_path_base: exp_air_quality
-    exp: exp_v5
+    exp: exp_v11
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: AirQualityMultiHeadDataLoader
@@ -142,7 +143,7 @@ train:
         file_extension_test: csv
         file_extension_val: csv
         cols_non_sensor: ['unit_nr', 'Date']
-        sequence_length: 24
+        sequence_length: 12
         stride: 1
         in_channels: 1
         lstm_multiplier: 20

@@ -22,7 +22,13 @@ from cnn import model, input, metrics, fitness_utils
 from util import create_info_file, init_log, load_yaml
 from torch.cuda.amp import GradScaler
 import torch.nn.init as init
-from torch.optim.lr_scheduler import ReduceLROnPlateau, ExponentialLR, CosineAnnealingLR, MultiStepLR
+from torch.optim.lr_scheduler import (
+	ReduceLROnPlateau,
+	ExponentialLR,
+	CosineAnnealingLR,
+	MultiStepLR,
+    CosineAnnealingWarmRestarts
+)
 from torch.optim.lr_scheduler import LambdaLR
 from cnn.train_detailed import TFScheduler, keras_style_scheduler
 from metrics.metric_tracker import MetricTracker
@@ -306,6 +312,13 @@ def train(model:torch.nn.Module,
         )
     elif scheduler_type == 'cosine':
         lr_scheduler = CosineAnnealingLR(optimizer, T_max=max_epochs, eta_min=0, last_epoch=-1)
+    elif params['lr_scheduler'] == 'cosine_warm_restarts':
+        lr_scheduler = CosineAnnealingWarmRestarts(
+            optimizer, 
+            T_0=sched_params.get('T_0', 20), 
+            T_mult=sched_params.get('T_mult', 2),
+            eta_min=sched_params.get('min_lr', 1e-6)
+        )
     elif scheduler_type == 'multistep':
         lr_scheduler = MultiStepLR(optimizer, milestones=milestones, gamma=0.1)
     elif scheduler_type == 'LambdaLR':
