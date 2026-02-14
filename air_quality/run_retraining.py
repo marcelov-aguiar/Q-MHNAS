@@ -35,8 +35,10 @@ def main(**args):
     logger.info(f"Loading data ...")
     data_loader = input.GenericDataLoader(params=config.train_spec)
     train_loader, val_loader = data_loader.get_loader(individual=config.evolved_params['net'],
+                                                      decoded_params=config.evolved_params['params'],
                                                       pin_memory_device=args['device'])
     test_loader = data_loader.get_loader(individual=config.evolved_params['net'],
+                                         decoded_params=config.evolved_params['params'],
                                          for_train=False, pin_memory_device=args['device'])
     
     output_dict = {}

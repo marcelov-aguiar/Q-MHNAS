@@ -8,14 +8,14 @@
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
 # v0 do ett baseado nas funcoes e configuracoes do turbofan
-# semelhante ao v0, mas com diferentes blocos de convolucao
-# Semelhante ao v1, mas parametros do Q-NAS e epocas alteradas
-# Metrica estava normalizada e não estava calculando erro de todo horizonte: Métrica está errada
+# Semlhante ao v0 mas com correcao da metrica, alteracao das celulas LSTM e scheduler
+# Semelhante ao v4, mas com diferentes blocos de convolucao, threads e tam da busca da janela
+# Selhante ao v5, v8 com alteracoes no QNAS e tambem no horizonte de previcao igual a 168
 
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 50
+    max_generations: 20
     max_num_nodes: 6
     num_quantum_ind: 4
     penalize_number: 3
@@ -45,9 +45,9 @@ QNAS:
         decay: 0.9
         learning_rate: 0.001
         weight_decay: 1.0e-4
-        lstm_1: [4, 20]
-        lstm_2: [4, 15]
-        sequence_length: [1, 7]
+        lstm_1: [4, 16]
+        lstm_2: [4, 16]
+        sequence_length: [4, 10]
 
     function_dict:  {
         # --- GRUPO 1: Detalhes Finos (Sem redução de tamanho) ---
@@ -74,19 +74,17 @@ QNAS:
 train:
     batch_size: 64
     eval_batch_size: 64
-    max_epochs: 30
-    epochs_to_eval: 29
+    max_epochs: 50
+    epochs_to_eval: 49
     optimizer:
-        name: RMSprop #RMSprop, Adam, AdamW, SGD
+        name: Adam #RMSprop, Adam, AdamW, SGD
         params:
             lr: 0.001
-            alpha: 0.9
+            betas: [0.9, 0.999]
             eps: 0.0000001
-            momentum: 0.0
-            centered: True
     fitness_metric: best_loss
-    lr_scheduler: TFScheduler # for retrain
-    lr_scheduler_train: TFScheduler
+    lr_scheduler: reduce_on_plateau # for retrain
+    lr_scheduler_train: reduce_on_plateau
     criterion:
         name: MSELoss #CrossEntropyLoss, MSELoss, L1Loss, RMSELoss
         params:
@@ -101,7 +99,7 @@ train:
     dataset: etth1_train
     file_extension: parquet
     exp_path_base: exp_etth1
-    exp: exp_v2
+    exp: exp_v9
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: Etth1MultiHeadDataLoader
@@ -111,11 +109,11 @@ train:
     limit_data: True
     limit_data_value: 10000
     num_workers: 0
-    num_classes: 24
+    num_classes: 168
     task: regression
     dataset_type: multihead
     target_normalization:
-        name: sklearn.preprocessing.StandardScaler
+        name: null # sklearn.preprocessing.StandardScaler
         path: scaler_y_etth1.save
         params:
         replace: False
@@ -123,7 +121,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 10
+    threads: 4
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M
@@ -150,7 +148,7 @@ train:
         cols_non_sensor: ['unit_nr', 'Date']
         stride: 1
         in_channels: 1
-        lstm_multiplier: 20
+        lstm_multiplier: 8
         campaign_name: unit_nr
         target_name: OT
         save_predictions_to_txt: False

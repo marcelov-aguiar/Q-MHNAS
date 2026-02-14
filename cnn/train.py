@@ -594,7 +594,7 @@ def fitness_calculation(id_num:str,
         raise ValueError(f"Unknown task type: {params['task']}")
 
     target_scaler = None
-    if ('target_normalization' in params) and (params['target_normalization']["name"] is not None):
+    if ('target_normalization' in params) and (params['target_normalization']["name"] is not None) and (params['target_normalization']["name"] != 'None'):
         if 'replace' in params['target_normalization'] and params['target_normalization']["replace"]:
             target_scaler_name = params['target_normalization']['path'].replace('.save', '_'+params['exp']+'.save')
         else:

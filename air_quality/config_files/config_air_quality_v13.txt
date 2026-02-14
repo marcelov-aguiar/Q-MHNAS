@@ -13,12 +13,14 @@
 # Bug da metrica corrigido
 # Semelhante ao v2 mas com mudancas significativas para ser semelhante ao trabalho
 # relacionado e ao teste empirico realizado
-# Semelhante a v4 e v10 mas com sequence_length variável
+# Semelhante ao v4 mas com CNN diferente em cada head
+# Semelhante a v5 mas com sequence_length igual a 12
+# Semelhante a v11 mas com sequence_length variável
 
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 50
+    max_generations: 100
     max_num_nodes: 6
     num_quantum_ind: 4
     penalize_number: 3
@@ -97,7 +99,7 @@ train:
     dataset: air_quality_train
     file_extension: csv
     exp_path_base: exp_air_quality
-    exp: exp_v12
+    exp: exp_v13
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: AirQualityMultiHeadDataLoader
@@ -119,7 +121,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 16
+    threads: 4
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M
@@ -137,7 +139,7 @@ train:
 
     # problem-specific parameters
     extra_params:
-        shared_head_architecture: True
+        shared_head_architecture: False
         num_sensors: 5
         dataset_test: air_quality_test
         dataset_val: air_quality_val

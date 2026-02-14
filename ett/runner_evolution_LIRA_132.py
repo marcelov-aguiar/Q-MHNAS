@@ -15,7 +15,8 @@ if __name__ == "__main__":
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		"etth1/config_files/config_etth1_v0.txt"
+		"etth1/config_files/config_etth1_v6.txt",
+		"etth1/config_files/config_etth1_v7.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

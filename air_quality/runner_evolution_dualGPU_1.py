@@ -14,7 +14,7 @@ if __name__ == "__main__":
 	# How to execute: LD_LIBRARY_PATH= python nome_do_arquivo.py
 
 	config_files = [
-		"config_files/config_air_quality_v4.txt"
+		"config_files/config_air_quality_v13.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

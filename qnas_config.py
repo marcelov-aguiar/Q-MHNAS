@@ -57,7 +57,7 @@ class ConfigParameters(object):
                         'n_filters': (1, 10),
                         'n_conv_layer': (1, 2),
                         'lstm_1': (4, 20),
-                        'lstm_2': (4, 15),
+                        'lstm_2': (4, 16),
                         'sequence_length': (1, 30)
                         }
 

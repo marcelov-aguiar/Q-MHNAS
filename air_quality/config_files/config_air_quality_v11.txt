@@ -14,7 +14,7 @@
 # Semelhante ao v2 mas com mudancas significativas para ser semelhante ao trabalho
 # relacionado e ao teste empirico realizado
 # Semelhante ao v4 mas com CNN diferente em cada head
-# Semelhante a v5 mas com horizon igual a 12
+# Semelhante a v5 mas com sequence_length igual a 12
 
 
 QNAS:

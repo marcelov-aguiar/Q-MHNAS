@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 import os
 import numpy as np
 import pandas as pd
@@ -12,13 +12,34 @@ from constants import const_time
 class Etth1MultiHeadDataLoader(BaseDataLoader):
 	def __init__(self, params: dict, info: dict = {}):
 		super().__init__(params, info)
+		self.cache = self._preload_all_data()
+
+	def _preload_all_data(self) -> Dict[str, pd.DataFrame]:
+		"""
+		Lê os arquivos Parquet uma única vez no início do experimento.
+		Diferente do CSV, o Parquet já é mais performático, mas a leitura repetida ainda mata o SSD.
+		"""
+		paths = {
+			'train': os.path.join(self.params['data_path'], 
+								  f"{self.params['dataset']}.{self.params['file_extension']}"),
+			'val': os.path.join(self.params['data_path'],
+					   f"{self.params['extra_params']['dataset_val']}.{self.params['extra_params']['file_extension_val']}"),
+			'test': os.path.join(self.params['data_path'],
+						f"{self.params['extra_params']['dataset_test']}.{self.params['extra_params']['file_extension_test']}")
+		}
+        
+		data_loaded = {}
+		for key, path in paths.items():
+			# Carrega o dado e aplica a coluna estrutural fixa
+			df = pd.read_parquet(path)
+			df["unit_nr"] = 10 
+			data_loaded[key] = df
+            
+		return data_loaded
 
 	def get_train_dataset_info(self) -> dict:
-		# Caminho para o arquivo final_train.parquet
-		data_path = os.path.join(self.params['data_path'],
-								 f"{self.params['dataset']}.{self.params['file_extension']}")
 		# Leitura rápida só para pegar colunas
-		data = pd.read_parquet(data_path)
+		data = self.cache['train']
 
 		# Num sensors = Total - (Metadados Excluídos) - (Estruturais Mantidas)
 		cols_non_sensor = self.params["extra_params"]["cols_non_sensor"]
@@ -38,26 +59,9 @@ class Etth1MultiHeadDataLoader(BaseDataLoader):
 		"""
 		Carrega os parquets processados e aplica apenas a Janela Deslizante.
 		"""
-		data_train_path = os.path.join(self.params['data_path'],
-								 f"{self.params['dataset']}.{self.params['file_extension']}")
-
-		df_train = pd.read_parquet(data_train_path)
-
-		df_train["unit_nr"] = 10
-
-		data_val_path = os.path.join(self.params['data_path'],
-								 f"{self.params['extra_params']['dataset_val']}.{self.params['extra_params']['file_extension_val']}")
-		
-		df_val = pd.read_parquet(data_val_path)
-
-		df_val["unit_nr"] = 10
-
-		data_test_path = os.path.join(self.params['data_path'],
-								 f"{self.params['extra_params']['dataset_test']}.{self.params['extra_params']['file_extension_test']}")
-		
-		df_test = pd.read_parquet(data_test_path)
-
-		df_test["unit_nr"] = 10
+		df_train = self.cache['train']
+		df_val = self.cache['val']
+		df_test = self.cache['test']
 
 		train_dataset = self.get_train_val_dataset(
 			df_train,

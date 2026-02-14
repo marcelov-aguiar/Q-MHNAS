@@ -11,6 +11,7 @@
 # semelhante ao v0, mas com diferentes blocos de convolucao
 # Semelhante ao v1, mas parametros do Q-NAS e epocas alteradas
 # semelhante ao v2, mas com diferentes blocos de convolucao em cada head
+# Metrica estava normalizada e não estava calculando erro de todo horizonte: Métrica está errada
 
 
 QNAS:

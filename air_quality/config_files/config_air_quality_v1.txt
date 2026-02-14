@@ -9,6 +9,8 @@
 # Agora o calculo da metrica esta por amostra e não batch
 # Esse config é semelhante ao v5 do turbofan, mas foi adaptado para o air_quality
 # Semelhante ao v0 mas com CNN diferente em cada Head e 100 geracoes
+# Metrica estava normalizada e não estava calculando erro de todo horizonte: Métrica está errada
+
 
 QNAS:
     crossover_rate: 0.5

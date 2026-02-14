@@ -757,7 +757,7 @@ def train_and_eval(params: Dict[str, Any],
     optimizer = optimizer_cls(model_net.parameters(), **opt_config.get("params", {}))
 
     target_scaler = None
-    if ('target_normalization' in params) and (params['target_normalization']["name"] is not None):
+    if ('target_normalization' in params) and (params['target_normalization']["name"] is not None) and (params['target_normalization']["name"] != 'None'):
         if 'replace' in params['target_normalization'] and params['target_normalization']["replace"]:
             target_scaler_name = params['target_normalization']['path'].replace('.save', '_'+params['exp']+'.save')
         else:

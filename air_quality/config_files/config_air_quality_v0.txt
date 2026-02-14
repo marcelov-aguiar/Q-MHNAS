@@ -8,6 +8,7 @@
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
 # Esse config é semelhante ao v5 do turbofan, mas foi adaptado para o air_quality
+# Metrica estava normalizada e não estava calculando erro de todo horizonte: Métrica está errada
 
 
 QNAS:

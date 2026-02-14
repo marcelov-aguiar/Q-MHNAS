@@ -10,6 +10,7 @@
 # Esse config é semelhante ao v5 do turbofan, mas foi adaptado para o air_quality
 # Semelhante ao v0, mas com update_quantum_gen 2, update_quantum_rate 0.3 e
 # max_update 0.15
+# Metrica estava normalizada e não estava calculando erro de todo horizonte: Métrica está errada
 
 
 QNAS:

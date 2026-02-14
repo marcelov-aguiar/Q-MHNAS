@@ -108,7 +108,7 @@ train:
     task: regression
     dataset_type: multihead
     target_normalization:
-        name:
+        name: null # sklearn.preprocessing.StandardScaler
         path: scaler_y_etth1.save
         params:
         replace: False

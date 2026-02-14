@@ -11,6 +11,7 @@
 # Semelhante ao v0 mas com CNN diferente em cada Head e 100 geracoes
 # Semelhante ao v1 mais com update_quantum_gen 2, update_quantum_rate 0.3 e
 # max_update 0.15
+# Metrica estava normalizada e não estava calculando erro de todo horizonte: Métrica está errada
 
 QNAS:
     crossover_rate: 0.5

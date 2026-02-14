@@ -8,6 +8,8 @@
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
 # v0 do ett baseado nas funcoes e configuracoes do turbofan
+# Metrica estava normalizada e não estava calculando erro de todo horizonte: Métrica está errada
+
 
 QNAS:
     crossover_rate: 0.5
