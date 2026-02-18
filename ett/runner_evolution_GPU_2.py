@@ -5,7 +5,7 @@ Chama o run_evolution.py
 import subprocess
 import os
 from util import load_yaml
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 if __name__ == "__main__":
 	base_path = os.path.dirname(os.path.abspath(__file__))
@@ -15,9 +15,7 @@ if __name__ == "__main__":
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		"etth1/config_files/config_etth1_v1.txt",
-		"etth1/config_files/config_etth1_v2.txt",
-		"etth1/config_files/config_etth1_v3.txt"
+		"etth1/config_files/config_etth1_v11.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

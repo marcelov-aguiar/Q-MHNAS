@@ -11,6 +11,7 @@
 # Semlhante ao v0 mas com correcao da metrica, alteracao das celulas LSTM e scheduler
 # Semelhante ao v4, mas com diferentes blocos de convolucao, threads e tam da busca da janela
 # Selhante ao v5, v8 com alteracoes no QNAS e tambem no horizonte de previcao igual a 168
+# Semelhante ao v9, mas com horizonte de predição igual a 336
 
 
 QNAS:
@@ -47,7 +48,7 @@ QNAS:
         weight_decay: 1.0e-4
         lstm_1: [4, 16]
         lstm_2: [4, 16]
-        sequence_length: [4, 10]
+        sequence_length: [7, 20]
 
     function_dict:  {
         # --- GRUPO 1: Detalhes Finos (Sem redução de tamanho) ---
@@ -99,7 +100,7 @@ train:
     dataset: etth1_train
     file_extension: parquet
     exp_path_base: exp_etth1
-    exp: exp_v9
+    exp: exp_v10
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: Etth1MultiHeadDataLoader
@@ -109,7 +110,7 @@ train:
     limit_data: True
     limit_data_value: 10000
     num_workers: 0
-    num_classes: 168
+    num_classes: 336
     task: regression
     dataset_type: multihead
     target_normalization:

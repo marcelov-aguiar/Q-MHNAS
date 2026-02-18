@@ -8,6 +8,9 @@ O run_evolution é semelhante ao run_evolution_turbofan_FD001_v0.py!!!!
 import argparse
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+import torch
+torch.set_num_threads(2)
+torch.set_num_interop_threads(2)
 import qnas
 import qnas_config as cfg
 import evaluation

@@ -1,12 +1,12 @@
 dataset: etth1_train
-num_classes: 24
+num_classes: 48
 num_sensors: 7
-seed: 1771034924
+seed: 1771444823
 shape:
 - null
 - null
 - null
 task: regression
-test_records: 2833
-train_records: 8593
-valid_records: 2833
+test_records: 2689
+train_records: 8449
+valid_records: 2689
