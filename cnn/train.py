@@ -507,9 +507,9 @@ def fitness_calculation(id_num:str,
     # else:
     #     dataset_info = load_yaml(os.path.join(params['data_path'], 'data_info.txt'))
     
-    params['num_classes'] = dataset_info['num_classes']
-    params['task'] = dataset_info['task']
-    dataset_info['shape'] = list(train_loader.dataset.X[0].shape[1:])
+    # params['num_classes'] = dataset_info['num_classes']
+    # params['task'] = dataset_info['task']
+    params['shape'] = list(train_loader.dataset.X[0].shape[1:])
 
     # check if cbam is a key in the fn_dict
     has_cbam_key = any(key.startswith('cbam') for key in fn_dict)
@@ -527,7 +527,7 @@ def fitness_calculation(id_num:str,
     if "dataset_type" in params and params["dataset_type"] == "multihead":
         # If multi-head architecture is enabled, create a multi-head network
         lstm_multiplier = params['extra_params']['lstm_multiplier']
-        model_net = model.MultiHeadNetworkGraphNew(num_classes=dataset_info['num_classes'], 
+        model_net = model.MultiHeadNetworkGraphNew(num_classes=params['num_classes'], 
                                                 network_config=params['network_config'], 
                                                 network_gap=params['network_gap'],
                                                 in_channels=params['extra_params']['in_channels'],
@@ -536,18 +536,18 @@ def fitness_calculation(id_num:str,
                                                 num_lstm_cells_2=int(decoded_params['lstm_2']*lstm_multiplier),
                                                 shared_head_architecture=params['extra_params']['shared_head_architecture'])
 
-        single_sensor_shape = [params['batch_size']] + dataset_info['shape']
-        input_shape = [single_sensor_shape] * dataset_info["num_sensors"]
+        single_sensor_shape = [params['batch_size']] + params['shape']
+        input_shape = [single_sensor_shape] * params['extra_params']['num_sensors']
 
-        inputs = [torch.randn(single_sensor_shape) for _ in range(dataset_info["num_sensors"])]
+        inputs = [torch.randn(single_sensor_shape) for _ in range(params['extra_params']['num_sensors'])]
 
     else:
-        model_net = model.NetworkGraph(num_classes=dataset_info['num_classes'], 
+        model_net = model.NetworkGraph(num_classes=params['num_classes'], 
                                        network_config=params['network_config'], 
                                        network_gap=params['network_gap'],
-                                       in_channels=dataset_info["shape"][0])
+                                       in_channels=params["shape"][0])
         # Add the fully connected layer to the model
-        input_shape =  [params['batch_size']] + dataset_info['shape']
+        input_shape =  [params['batch_size']] + params['shape']
         inputs = torch.randn(input_shape)
 
     filtered_dict = {key: item for key, item in fn_dict.items() if key in net_list}

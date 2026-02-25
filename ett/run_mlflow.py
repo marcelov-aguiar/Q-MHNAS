@@ -30,8 +30,9 @@ if __name__ == "__main__":
         # Sort by numeric version
         config_files = sorted(config_files, key=mlflow_tracking.extract_version)
         config_files = [
-            "config_etth1_v6.txt",
-            "config_etth1_v8.txt"
+            "config_etth1_v9.txt",
+            "config_etth1_v10.txt",
+            "config_etth1_v11.txt"
         ]
         for config_name in config_files:
             dataset = config_name.split("_")[1]

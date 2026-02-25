@@ -11,13 +11,12 @@
 # Semlhante ao v0 mas com correcao da metrica, alteracao das celulas LSTM e scheduler
 # Semelhante ao v4, mas com diferentes blocos de convolucao, threads e tam da busca da janela
 # Selhante ao v5, v8 com alteracoes no QNAS e tambem no horizonte de previcao igual a 168
-# Semelhante ao v9, mas com horizonte de predição igual a 336
-# Semelhante ao v10, mas com horizonte de predição igual a 720
+# Semelhante ao v9 mas mas com alteracoes necessarias para cnn diferente em cada head
 
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 50
+    max_generations: 100
     max_num_nodes: 6
     num_quantum_ind: 4
     penalize_number: 3
@@ -49,7 +48,7 @@ QNAS:
         weight_decay: 1.0e-4
         lstm_1: [4, 16]
         lstm_2: [4, 16]
-        sequence_length: [15, 30]
+        sequence_length: [4, 10]
 
     function_dict:  {
         # --- GRUPO 1: Detalhes Finos (Sem redução de tamanho) ---
@@ -101,9 +100,9 @@ train:
     dataset: etth1_train
     file_extension: parquet
     exp_path_base: exp_etth1
-    exp: exp_v11
+    exp: exp_v13
     log_level: INFO
-    repeat: 2 # repetions for search
+    repeat: 3 # repetions for search
     dataloader_class: Etth1MultiHeadDataLoader
 
     data_augmentation: False
@@ -111,7 +110,7 @@ train:
     limit_data: True
     limit_data_value: 10000
     num_workers: 0
-    num_classes: 720
+    num_classes: 168
     task: regression
     dataset_type: multihead
     target_normalization:
@@ -123,7 +122,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 2
+    threads: 4
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M
@@ -141,7 +140,7 @@ train:
 
     # problem-specific parameters
     extra_params:
-        shared_head_architecture: True
+        shared_head_architecture: False
         num_sensors: 7
         dataset_test: etth1_test
         file_extension_test: parquet
@@ -150,7 +149,7 @@ train:
         cols_non_sensor: ['unit_nr', 'Date']
         stride: 1
         in_channels: 1
-        lstm_multiplier: 12
+        lstm_multiplier: 8
         campaign_name: unit_nr
         target_name: OT
         save_predictions_to_txt: False

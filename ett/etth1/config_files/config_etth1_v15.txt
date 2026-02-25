@@ -13,11 +13,12 @@
 # Selhante ao v5, v8 com alteracoes no QNAS e tambem no horizonte de previcao igual a 168
 # Semelhante ao v9, mas com horizonte de predição igual a 336
 # Semelhante ao v10, mas com horizonte de predição igual a 720
+# Semelhante ao 11 mas mas com alteracoes necessarias para cnn diferente em cada head
 
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 50
+    max_generations: 100
     max_num_nodes: 6
     num_quantum_ind: 4
     penalize_number: 3
@@ -101,9 +102,9 @@ train:
     dataset: etth1_train
     file_extension: parquet
     exp_path_base: exp_etth1
-    exp: exp_v11
+    exp: exp_v15
     log_level: INFO
-    repeat: 2 # repetions for search
+    repeat: 3 # repetions for search
     dataloader_class: Etth1MultiHeadDataLoader
 
     data_augmentation: False
@@ -141,7 +142,7 @@ train:
 
     # problem-specific parameters
     extra_params:
-        shared_head_architecture: True
+        shared_head_architecture: False
         num_sensors: 7
         dataset_test: etth1_test
         file_extension_test: parquet
