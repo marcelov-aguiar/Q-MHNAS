@@ -5,7 +5,7 @@ Chama o run_evolution.py
 import subprocess
 import os
 from util import load_yaml
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 if __name__ == "__main__":
 	base_path = os.path.dirname(os.path.abspath(__file__))
@@ -14,12 +14,17 @@ if __name__ == "__main__":
 	# How to execute: LD_LIBRARY_PATH= python nome_do_arquivo.py
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
-	config_files = [		
-		"FD004/config_files/config_turbofan_FD004_v9.txt",
-		"FD004/config_files/config_turbofan_FD004_v10.txt",
-		"FD001/config_files/config_turbofan_FD001_v26.txt",
-		"FD004/config_files/config_turbofan_FD004_v11.txt",
-		"FD004/config_files/config_turbofan_FD004_v12.txt"
+	config_files = [
+		# Experimentos que faltaram	
+		"FD002/config_files/config_turbofan_FD002_v27.txt",
+		"FD004/config_files/config_turbofan_FD004_v30.txt",
+		"FD001/config_files/config_turbofan_FD001_v56.txt",
+
+		# baixa prioridade
+		"FD004/config_files/config_turbofan_FD004_v31.txt", # exp com change de melhor resultado
+		"FD003/config_files/config_turbofan_FD003_v25.txt", # padronizar comparacao
+		"FD002/config_files/config_turbofan_FD002_v13.txt", # faltam duas rodadas
+		"FD003/config_files/config_turbofan_FD003_v17.txt" # faltam duas rodadas
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

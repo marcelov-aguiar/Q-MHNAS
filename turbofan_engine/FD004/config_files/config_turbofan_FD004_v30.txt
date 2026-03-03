@@ -4,23 +4,24 @@
 # teoricamente espero bons resultados
 # coloquei allow_duplicate_architectures como True pois ainda nao implementei deteccao de
 # net e parametros em conjunto que sao duplicados
-
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
 # Coloquei batch igual a 64 para verificar se tem melhoria maior no resultado
 # Semelhante ao V3, mas com mais geracoes e seguindo a configuracao base da Daniela
-# Semelhante ao V9, com UQG 2, UQR 0,3 max_update 0,15
+# Igual ao v9, mas com TFScheduler
+# Igual ao v20, mas com 20 geracoes
+
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 50
+    max_generations: 20
     max_num_nodes: 6
     num_quantum_ind: 5
     penalize_number: 3
     repetition: 4
     replace_method: best
-    update_quantum_gen: 2
-    update_quantum_rate: 0.3
+    update_quantum_gen: 5
+    update_quantum_rate: 0.1
     save_data_freq: 10
     crossover_frequency: 5
     pop_crossover_rate: 0.25
@@ -28,7 +29,7 @@ QNAS:
     patience: 10
     early_stopping: False
     en_pop_crossover: False
-    max_update: 0.15
+    max_update: 0.05
 
     params_type:
         decay: float
@@ -78,7 +79,7 @@ train:
             momentum: 0.0
             centered: True
     fitness_metric: best_loss
-    lr_scheduler: LambdaLR # for retrain
+    lr_scheduler: TFScheduler # for retrain
     lr_scheduler_train: None
     criterion:
         name: MSELoss #CrossEntropyLoss, MSELoss, L1Loss, RMSELoss
@@ -94,7 +95,7 @@ train:
     dataset: turbofan_fd004_multihead_train
     file_extension: csv
     exp_path_base: exp_FD004
-    exp: exp_v11
+    exp: exp_v30
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: TurbofanMultiHeadDataLoader
@@ -111,7 +112,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 20
+    threads: 3
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M

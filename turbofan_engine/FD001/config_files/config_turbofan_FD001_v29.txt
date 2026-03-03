@@ -122,7 +122,7 @@ train:
 
     # Params for retrain:
     batch_size_retrain: 400
-    eval_batch_size_retrain: 32
+    eval_batch_size_retrain: 400
     max_epochs_retrain: 20
     num_repetitions_retrain: 5 # repetions for retrain
 

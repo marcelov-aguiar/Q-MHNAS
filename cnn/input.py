@@ -119,7 +119,8 @@ class TurbofanMultiHeadDataLoader(BaseDataLoader):
     return self.info_dict
 
   def get_train_val_test_dataset(self,
-                                 individual: List[str]) -> \
+                                 individual: List[str],
+                                 decoded_params=None) -> \
                                   Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     train_dataset, valid_dataset = self._get_train_val_dataset(individual)
     test_dataset = self._get_test_dataset(individual)
