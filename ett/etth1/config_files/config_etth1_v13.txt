@@ -102,7 +102,7 @@ train:
     exp_path_base: exp_etth1
     exp: exp_v13
     log_level: INFO
-    repeat: 3 # repetions for search
+    repeat: 1 # repetions for search
     dataloader_class: Etth1MultiHeadDataLoader
 
     data_augmentation: False
