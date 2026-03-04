@@ -17,8 +17,8 @@ if __name__ == "__main__":
 	config_files = [
 		#"FD004/config_files/config_turbofan_FD004_v2.txt",
 		#"FD004/config_files/config_turbofan_FD004_v13.txt",
-		"FD004/config_files/config_turbofan_FD004_v28.txt",
-		"FD004/config_files/config_turbofan_FD004_v29.txt"
+		"FD001/config_files/config_turbofan_FD001_v57.txt",
+		"FD001/config_files/config_turbofan_FD001_v58.txt"
 		
 	]
 	for cfg in config_files:

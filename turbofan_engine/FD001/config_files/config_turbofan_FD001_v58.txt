@@ -7,21 +7,18 @@
 
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
-# Semelhante ao V5, porem o update_quantum_rate foi alterado para 0,5. Foi invertido a quantidade
-# de ind quanticos e repeticoes. 5 quantico e 4 repticoes
-# Semelhante ao V10, porem com 40 geracoes
-# Semelhante ao V15, porem com 50 geracoes e as demais configurações base da Daniela
-# Igual ao v25, mas com TFScheduler
-# Igual ao v49, mas com 20 geracoes
+# Exp semelhante ao v5, porem, o tamanho do batch para treino e retreino foi alterado
+# Igual ao v14, mas com TFScheduler
+# Igual ao v38 mas com retreinamento correto
 
 
 QNAS:
     crossover_rate: 0.5
     max_generations: 20
     max_num_nodes: 6
-    num_quantum_ind: 5
+    num_quantum_ind: 4
     penalize_number: 3
-    repetition: 4
+    repetition: 5
     replace_method: best
     update_quantum_gen: 5
     update_quantum_rate: 0.1
@@ -69,8 +66,8 @@ QNAS:
     }
 
 train:
-    batch_size: 400
-    eval_batch_size: 400
+    batch_size: 128
+    eval_batch_size: 128
     max_epochs: 20
     epochs_to_eval: 19
     optimizer:
@@ -98,9 +95,9 @@ train:
     dataset: turbofan_fd001_multihead_train
     file_extension: csv
     exp_path_base: exp_FD001
-    exp: exp_v56
+    exp: exp_v58
     log_level: INFO
-    repeat: 2 # repetions for search
+    repeat: 4 # repetions for search
     dataloader_class: TurbofanMultiHeadDataLoader
 
     data_augmentation: False
@@ -115,7 +112,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 3
+    threads: 20
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M
@@ -126,8 +123,8 @@ train:
     network_gap: False
 
     # Params for retrain:
-    batch_size_retrain: 400
-    eval_batch_size_retrain: 400
+    batch_size_retrain: 128
+    eval_batch_size_retrain: 128
     max_epochs_retrain: 20
     num_repetitions_retrain: 5 # repetions for retrain
 
