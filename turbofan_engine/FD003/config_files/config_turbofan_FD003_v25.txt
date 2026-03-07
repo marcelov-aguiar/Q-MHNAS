@@ -96,7 +96,7 @@ train:
     dataset: turbofan_fd003_multihead_train
     file_extension: csv
     exp_path_base: exp_FD003
-    exp: exp_v17
+    exp: exp_v25
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: TurbofanMultiHeadDataLoader

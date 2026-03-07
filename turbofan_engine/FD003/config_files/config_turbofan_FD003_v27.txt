@@ -4,19 +4,22 @@
 # teoricamente espero bons resultados
 # coloquei allow_duplicate_architectures como True pois ainda nao implementei deteccao de
 # net e parametros em conjunto que sao duplicados
+
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
-# Igual ao v2, mas com TFScheduler
-# Igual a v12, mas com TFScheduler na evolucao
+# Semelhante ao v2, mas com mais geracoes e as configuracoes base da daniela
+# Semelhante ao v11, mas com multi head
+# Igual ao v8, mas com TFScheduler
+# Igual ao v18, mas com TFScheduler no treino
 
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 20
+    max_generations: 50
     max_num_nodes: 6
-    num_quantum_ind: 4
+    num_quantum_ind: 5
     penalize_number: 3
-    repetition: 5
+    repetition: 4
     replace_method: best
     update_quantum_gen: 5
     update_quantum_rate: 0.1
@@ -93,7 +96,7 @@ train:
     dataset: turbofan_fd003_multihead_train
     file_extension: csv
     exp_path_base: exp_FD003
-    exp: exp_v23
+    exp: exp_v27
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: TurbofanMultiHeadDataLoader
@@ -110,7 +113,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 20
+    threads: 5
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M
@@ -128,7 +131,7 @@ train:
 
     # problem-specific parameters
     extra_params:
-        shared_head_architecture: True
+        shared_head_architecture: False
         num_sensors: 14
         dataset_test: turbofan_fd003_multihead_test
         file_extension_test: csv
