@@ -14,8 +14,7 @@
 # Semelhante ao v25, mas com UQG 2, UQR 0,3 max_update 0,15
 # Semelhante ai v26, mas agora aqui é multi Head
 # Igual ao v28, mas com TFScheduler
-# Igual ao v52, mas com TFScheduler no treino e 100 gerações
-# Igual ao v45, mas com 50 geracoes
+# Igual ao v52, mas com TFScheduler no treino
 
 
 QNAS:
@@ -103,7 +102,7 @@ train:
     exp_path_base: exp_FD001
     exp: exp_v63
     log_level: INFO
-    repeat: 3 # repetions for search
+    repeat: 2 # repetions for search
     dataloader_class: TurbofanMultiHeadDataLoader
 
     data_augmentation: False

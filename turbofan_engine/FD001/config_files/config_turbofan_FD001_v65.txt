@@ -10,22 +10,21 @@
 # Semelhante ao V5, porem o update_quantum_rate foi alterado para 0,5. Foi invertido a quantidade
 # de ind quanticos e repeticoes. 5 quantico e 4 repticoes
 # Semelhante ao V10, porem com 40 geracoes
-# Semelhante ao V15, porem com 50 geracoes e as demais configurações base da Daniela
-# Semelhante ao v25, mas com UQG 2, UQR 0,3 max_update 0,15
-# Semelhante ai v26, mas agora aqui é multi Head
-# Igual ao v28, mas com TFScheduler
-# Igual ao v52, mas com TFScheduler no treino e 100 gerações
+# Semelhante ao V15 porem com max_update igual a 0,15
+# Igual ao v21, mas com TFScheduler
+# Igual ao v45, mas com 50 geracoes
+
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 100
+    max_generations: 50
     max_num_nodes: 6
     num_quantum_ind: 5
     penalize_number: 3
     repetition: 4
     replace_method: best
-    update_quantum_gen: 2
-    update_quantum_rate: 0.3
+    update_quantum_gen: 5
+    update_quantum_rate: 0.5
     save_data_freq: 10
     crossover_frequency: 5
     pop_crossover_rate: 0.25
@@ -84,7 +83,7 @@ train:
             centered: True
     fitness_metric: best_loss
     lr_scheduler: TFScheduler # for retrain
-    lr_scheduler_train: TFScheduler
+    lr_scheduler_train: None
     criterion:
         name: MSELoss #CrossEntropyLoss, MSELoss, L1Loss, RMSELoss
         params:
@@ -99,7 +98,7 @@ train:
     dataset: turbofan_fd001_multihead_train
     file_extension: csv
     exp_path_base: exp_FD001
-    exp: exp_v54
+    exp: exp_v65
     log_level: INFO
     repeat: 3 # repetions for search
     dataloader_class: TurbofanMultiHeadDataLoader
@@ -134,7 +133,7 @@ train:
 
     # problem-specific parameters
     extra_params:
-        shared_head_architecture: False
+        shared_head_architecture: True
         num_sensors: 14
         dataset_test: turbofan_fd001_multihead_test
         file_extension_test: csv

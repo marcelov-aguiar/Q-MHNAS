@@ -15,21 +15,22 @@ if __name__ == "__main__":
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		"FD001/config_files/config_turbofan_FD001_v61.txt",
-		"FD001/config_files/config_turbofan_FD001_v62.txt",
-		"FD001/config_files/config_turbofan_FD001_v63.txt",
-		"FD001/config_files/config_turbofan_FD001_v59.txt",
+		#"FD001/config_files/config_turbofan_FD001_v61.txt",
+		#"FD001/config_files/config_turbofan_FD001_v62.txt",
+		#"FD001/config_files/config_turbofan_FD001_v63.txt",
+		#"FD001/config_files/config_turbofan_FD001_v59.txt",
 		"FD001/config_files/config_turbofan_FD001_v60.txt",
 		"FD001/config_files/config_turbofan_FD001_v64.txt", # comparar aumento de geracao
-		"FD003/config_files/config_turbofan_FD003_v26.txt"
+		"FD003/config_files/config_turbofan_FD003_v26.txt",
+		"FD001/config_files/config_turbofan_FD001_v65.txt" # verificar se esse exp e necessario
 
 		# Rodando PC Santiago: "FD003/config_files/config_turbofan_FD003_v27.txt",
 		# Rodando PC Santiago: "FD003/config_files/config_turbofan_FD003_v28.txt",
 		# Rodando PC Santiago: "FD002/config_files/config_turbofan_FD002_v28.txt",
 		# Rodando PC Santiago: "FD002/config_files/config_turbofan_FD002_v29.txt",
-		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v32.txt",
-		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v33.txt",
-		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v34.txt"
+		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v32.txt", # Zé
+		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v33.txt", # Zé
+		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v34.txt" # Zé
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

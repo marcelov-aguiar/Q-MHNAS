@@ -15,10 +15,13 @@ if __name__ == "__main__":
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		"FD004/config_files/config_turbofan_FD004_v31.txt", # exp com change de melhor resultado
-		"FD003/config_files/config_turbofan_FD003_v25.txt", # padronizar comparacao
-		"FD002/config_files/config_turbofan_FD002_v13.txt", # faltam duas rodadas
-		"FD003/config_files/config_turbofan_FD003_v17.txt" # faltam duas rodadas
+		# "FD004/config_files/config_turbofan_FD004_v31.txt", # exp com change de melhor resultado
+		# "FD003/config_files/config_turbofan_FD003_v25.txt", # padronizar comparacao
+		# "FD002/config_files/config_turbofan_FD002_v13.txt", # faltam duas rodadas
+		# "FD003/config_files/config_turbofan_FD003_v17.txt" # faltam duas rodadas
+		"FD004/config_files/config_turbofan_FD004_v32.txt",
+		"FD004/config_files/config_turbofan_FD004_v33.txt",
+		"FD004/config_files/config_turbofan_FD004_v34.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)
