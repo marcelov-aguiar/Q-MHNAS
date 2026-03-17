@@ -79,7 +79,7 @@ def main(**args):
 
 if __name__ == '__main__':
 
-	# How to run: python run_retraining.py --config FD001/config_files/config_turbofan_FD001_v18.txt --repeat 3
+	# How to run: python run_retraining.py --config FD001/config_files/config_turbofan_FD001_v130.txt --repeat 3
 	import argparse
 
 	parser = argparse.ArgumentParser()

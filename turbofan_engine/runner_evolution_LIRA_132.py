@@ -18,19 +18,22 @@ if __name__ == "__main__":
 		#"FD001/config_files/config_turbofan_FD001_v61.txt",
 		#"FD001/config_files/config_turbofan_FD001_v62.txt",
 		#"FD001/config_files/config_turbofan_FD001_v63.txt",
-		#"FD001/config_files/config_turbofan_FD001_v59.txt",
-		"FD001/config_files/config_turbofan_FD001_v60.txt",
-		"FD001/config_files/config_turbofan_FD001_v64.txt", # comparar aumento de geracao
-		"FD003/config_files/config_turbofan_FD003_v26.txt",
-		"FD001/config_files/config_turbofan_FD001_v65.txt" # verificar se esse exp e necessario
-
+		# "FD003/config_files/config_turbofan_FD003_v26.txt", # rodando no Dell G15
+		#"FD001/config_files/config_turbofan_FD001_v65.txt", # verificar se esse exp e necessario
+		#"FD001/config_files/config_turbofan_FD001_v60.txt", # repetir uma vez
+		#"FD001/config_files/config_turbofan_FD001_v59.txt", # repetir uma vez
+		#"FD001/config_files/config_turbofan_FD001_v64.txt", # repetir uma vez; comparar aumento de geracao
+		#
 		# Rodando PC Santiago: "FD003/config_files/config_turbofan_FD003_v27.txt",
 		# Rodando PC Santiago: "FD003/config_files/config_turbofan_FD003_v28.txt",
 		# Rodando PC Santiago: "FD002/config_files/config_turbofan_FD002_v28.txt",
 		# Rodando PC Santiago: "FD002/config_files/config_turbofan_FD002_v29.txt",
 		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v32.txt", # Zé
 		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v33.txt", # Zé
-		# Rodando PC Santiago: "FD004/config_files/config_turbofan_FD004_v34.txt" # Zé
+		# Rodando PC Santiago:  # Zé
+		"FD004/config_files/config_turbofan_FD004_v34.txt", # rodar uma rodada aqui e duas no santiago
+		"FD001/config_files/config_turbofan_FD001_v66.txt", # padronizar quantidade de geracoes
+		"FD001/config_files/config_turbofan_FD001_v30.txt" # falta rodar duas vezes
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

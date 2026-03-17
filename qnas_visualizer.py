@@ -226,7 +226,7 @@ class QNASVisualizer:
 		"""
 		fig, ax = plt.subplots(figsize=(10, 6))
 
-		ax.plot(generations, gen_best, color='lime', alpha=0.4, marker='o', linewidth=0.8, label='Best in Generation')
+		# ax.plot(generations, gen_best, color='lime', alpha=0.4, marker='o', linewidth=0.8, label='Best in Generation')
 		if show_best_fitness:
 			ax.plot(generations, best_fitness, color='green', alpha=0.4, marker='o', linewidth=0.8, label='Best Fitness')
 		ax.plot(generations, avg_fitness, color='blue', alpha=0.4, marker='o', linewidth=0.8, label='Average Fitness')

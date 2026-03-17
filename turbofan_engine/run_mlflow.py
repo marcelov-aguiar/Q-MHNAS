@@ -30,9 +30,25 @@ if __name__ == "__main__":
         # Sort by numeric version
         config_files = sorted(config_files, key=mlflow_tracking.extract_version)
         config_files = [
-            "config_turbofan_FD003_v17.txt", # rodar tres vezes pq só rodou uma
-            "config_turbofan_FD002_v13.txt", # rodar três vezes
-            "config_turbofan_FD002_v27.txt" # por enquanto são só duas rodads
+            # falta executar daqui para baixo: tem experimento que ainda nao foi retreinado
+            #"config_turbofan_FD001_v63.txt",
+            #"config_turbofan_FD001_v65.txt",
+            #"config_turbofan_FD001_v60.txt",
+            "config_turbofan_FD001_v59.txt"
+            # "config_turbofan_FD001_v64.txt",
+            #"config_turbofan_FD002_v28.txt",
+            #"config_turbofan_FD002_v29.txt",
+
+            #"config_turbofan_FD003_v26.txt",
+            #"config_turbofan_FD003_v27.txt",
+            #"config_turbofan_FD003_v28.txt",
+
+            #"config_turbofan_FD004_v30.txt",
+            #"config_turbofan_FD004_v32.txt",
+            # "config_turbofan_FD004_v33.txt"
+            #"config_turbofan_FD001_v30.txt", # Falta duas rodadas ainda
+            #"config_turbofan_FD004_v34.txt", # Faltam três rodadas
+
         ]
         for config_name in config_files:
             dataset = config_name.split("_")[2]

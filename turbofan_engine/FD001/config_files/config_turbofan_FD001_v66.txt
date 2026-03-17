@@ -7,17 +7,20 @@
 
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
-# Coloquei batch igual a 64 para verificar se tem melhoria maior no resultado
-# Conclusao: Nao teve melhoria nos resultados
-# Igual ao v6, mas com TFScheduler
+# Igual ao V5, mas com diferentes CNN para cada Head
+# Igual ao v22, mas com TFScheduler
+# Igual ao v46, mas com TFScheduler no treino e 100 gerações
+# Semelhante ao v53, mas com 20 geracoes e 5 indiv quanticos e 4 repeticoes
+# Semelhante ao v62, mas com 50 geracoes
+
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 20
+    max_generations: 50
     max_num_nodes: 6
-    num_quantum_ind: 4
+    num_quantum_ind: 5
     penalize_number: 3
-    repetition: 5
+    repetition: 4
     replace_method: best
     update_quantum_gen: 5
     update_quantum_rate: 0.1
@@ -65,8 +68,8 @@ QNAS:
     }
 
 train:
-    batch_size: 64
-    eval_batch_size: 64
+    batch_size: 400
+    eval_batch_size: 400
     max_epochs: 20
     epochs_to_eval: 19
     optimizer:
@@ -79,7 +82,7 @@ train:
             centered: True
     fitness_metric: best_loss
     lr_scheduler: TFScheduler # for retrain
-    lr_scheduler_train: None
+    lr_scheduler_train: TFScheduler
     criterion:
         name: MSELoss #CrossEntropyLoss, MSELoss, L1Loss, RMSELoss
         params:
@@ -94,9 +97,9 @@ train:
     dataset: turbofan_fd001_multihead_train
     file_extension: csv
     exp_path_base: exp_FD001
-    exp: exp_v30
+    exp: exp_v66
     log_level: INFO
-    repeat: 2 # repetions for search
+    repeat: 3 # repetions for search
     dataloader_class: TurbofanMultiHeadDataLoader
 
     data_augmentation: False
@@ -129,7 +132,7 @@ train:
 
     # problem-specific parameters
     extra_params:
-        shared_head_architecture: True
+        shared_head_architecture: False
         num_sensors: 14
         dataset_test: turbofan_fd001_multihead_test
         file_extension_test: csv
