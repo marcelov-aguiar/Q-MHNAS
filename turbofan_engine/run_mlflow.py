@@ -34,7 +34,7 @@ if __name__ == "__main__":
             #"config_turbofan_FD001_v63.txt",
             #"config_turbofan_FD001_v65.txt",
             #"config_turbofan_FD001_v60.txt",
-            "config_turbofan_FD001_v59.txt"
+            #"config_turbofan_FD001_v59.txt"
             # "config_turbofan_FD001_v64.txt",
             #"config_turbofan_FD002_v28.txt",
             #"config_turbofan_FD002_v29.txt",
@@ -46,9 +46,9 @@ if __name__ == "__main__":
             #"config_turbofan_FD004_v30.txt",
             #"config_turbofan_FD004_v32.txt",
             # "config_turbofan_FD004_v33.txt"
-            #"config_turbofan_FD001_v30.txt", # Falta duas rodadas ainda
-            #"config_turbofan_FD004_v34.txt", # Faltam três rodadas
-
+            #"config_turbofan_FD001_v66.txt",
+            # "config_turbofan_FD001_v30.txt",
+            # "config_turbofan_FD004_v34.txt"
         ]
         for config_name in config_files:
             dataset = config_name.split("_")[2]
