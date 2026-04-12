@@ -49,6 +49,8 @@ if __name__ == "__main__":
             #"config_turbofan_FD001_v66.txt",
             # "config_turbofan_FD001_v30.txt",
             # "config_turbofan_FD004_v34.txt"
+            "config_turbofan_FD002_v30.txt"
+            #"config_turbofan_FD002_v31.txt"
         ]
         for config_name in config_files:
             dataset = config_name.split("_")[2]

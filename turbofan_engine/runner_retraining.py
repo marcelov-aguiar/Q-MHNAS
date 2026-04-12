@@ -14,30 +14,9 @@ if __name__ == "__main__":
 
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
+
 	config_files = [
-		#"FD001/config_files/config_turbofan_FD001_v63.txt", # MLFlow
-		#"FD003/config_files/config_turbofan_FD003_v26.txt", # MLFlow
-		#"FD003/config_files/config_turbofan_FD003_v27.txt", # MLFlow
-		#"FD003/config_files/config_turbofan_FD003_v28.txt" # MLFlow
-		# "FD001/config_files/config_turbofan_FD001_v59.txt", #falta uma rodada
-		# "FD002/config_files/config_turbofan_FD002_v28.txt",
-		# "FD001/config_files/config_turbofan_FD001_v65.txt",
-		# "FD001/config_files/config_turbofan_FD001_v60.txt", #falta uma rodada
-		# "FD001/config_files/config_turbofan_FD001_v64.txt",
-		# "FD001/config_files/config_turbofan_FD001_v59.txt",
-		# "FD002/config_files/config_turbofan_FD002_v29.txt"
-		#"FD004/config_files/config_turbofan_FD004_v33.txt"
-
-
-		# "FD004/config_files/config_turbofan_FD004_v30.txt",
-		# "FD004/config_files/config_turbofan_FD004_v32.txt",
-		# "FD001/config_files/config_turbofan_FD001_v60.txt",
-		# "FD001/config_files/config_turbofan_FD001_v59.txt",
-		# "FD001/config_files/config_turbofan_FD001_v64.txt",
-		# "FD001/config_files/config_turbofan_FD001_v30.txt"
-		# "FD001/config_files/config_turbofan_FD001_v66.txt",
-		"FD001/config_files/config_turbofan_FD001_v30.txt",
-		"FD004/config_files/config_turbofan_FD004_v34.txt"
+		# "FD001/config_files/config_turbofan_FD001_v63.txt",
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

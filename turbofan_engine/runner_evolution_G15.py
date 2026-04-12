@@ -14,8 +14,9 @@ if __name__ == "__main__":
 	# How to execute: LD_LIBRARY_PATH= python nome_do_arquivo.py
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
+
 	config_files = [
-		"FD003/config_files/config_turbofan_FD003_v26.txt"
+		# "FD001/config_files/config_turbofan_FD001_v63.txt",
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

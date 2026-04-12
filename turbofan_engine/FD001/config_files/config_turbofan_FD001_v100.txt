@@ -126,7 +126,7 @@ train:
         dataset_test: turbofan_fd001_multihead_test
         file_extension_test: csv
         cols_non_sensor: ['unit_nr', 'cycles', 'os_1', 'os_2', 'RUL']
-        sequence_length: 30
+        sequence_length: 4
         stride: 1
         in_channels: 1
         val_split: 0.1
