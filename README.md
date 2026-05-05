@@ -75,8 +75,9 @@ Observação: Como o ambiente da série 50 exige versões mais recentes das bibl
 **Hardware Utilizado**
 Os extensos experimentos de busca arquitetural e retreinamento das redes (citados na dissertação) foram validados em diversas arquiteturas de alto desempenho, incluindo as seguintes GPUs:
 
+- NVIDIA GTX 1650
 - NVIDIA RTX 3090
 - NVIDIA RTX 4060
-- NVIDIA RTX 4090
+- NVIDIA RTX 4070
 - NVIDIA RTX 5080
 - NVIDIA L40S
