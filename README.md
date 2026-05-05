@@ -68,6 +68,7 @@ torchaudio==2.11.0.dev20260313+cu128 \
 
 ```bash
 pip install -r requirements_rtx50.txt
+pip install medmnist --no-deps
 ```
 Observação: Como o ambiente da série 50 exige versões mais recentes das bibliotecas base, pequenos ajustes pontuais no código-fonte podem ser necessários para garantir a execução dos scripts.
 
