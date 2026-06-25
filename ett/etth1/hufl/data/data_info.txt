@@ -1,0 +1,12 @@
+dataset: etth1_HUFL_train
+num_classes: 48
+num_sensors: 7
+seed: 1782097298
+shape:
+- null
+- null
+- null
+task: regression
+test_records: 2689
+train_records: 8449
+valid_records: 2689

@@ -94,10 +94,10 @@ if __name__ == '__main__':
     
 	args = parser.parse_args()
 
-	# ["FD002", "config_files", "config_turbofan_FD001_v100.txt"]
-	root_folder, config_file_folder, config_file_name = args.config.split("/")
+	# ["etth1", "ot", "config_files", "config_turbofan_FD001_v100.txt"]
+	dataset, root_folder, config_file_folder, config_file_name = args.config.split("/")
 
-	base_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), root_folder)
+	base_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), dataset, root_folder)
 
 	config_path = os.path.join(base_path, config_file_folder, config_file_name)
 	config_file = load_yaml(config_path)
