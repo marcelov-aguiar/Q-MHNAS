@@ -1,24 +1,20 @@
 """
 Responsável por executar o retreinamento de todos os arquivos .txt dos diretorios passados
-Semelhante ao runner_evolution.py, mas chama o run_retreining.py
+Chama o run_evolution.py
 """
 import subprocess
 import os
 from util import load_yaml
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 if __name__ == "__main__":
 	base_path = os.path.dirname(os.path.abspath(__file__))
 	
-	run_script = os.path.join(base_path, "run_retraining.py")
-
+	run_script = os.path.join(base_path, "run_evolution.py")
+	# How to execute: LD_LIBRARY_PATH= python nome_do_arquivo.py
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		# "etth1/hufl/config_files/config_etth1_v4.txt",
-		# "etth1/hufl/config_files/config_etth1_v5.txt",
-		# "etth1/hufl/config_files/config_etth1_v6.txt",
-		# "etth1/hufl/config_files/config_etth1_v8.txt"
 		"etth1/hufl/config_files/config_etth1_v100.txt"
 	]
 	for cfg in config_files:
@@ -26,9 +22,9 @@ if __name__ == "__main__":
 		config_data = load_yaml(config_path)
 		repeat_count = config_data['train']['repeat']
 		for repetition in range(1, repeat_count + 1):
-			print(f"\n=== Executando retreinamento com {cfg} {repetition}/{repeat_count} ===\n")
+			print(f"\n=== Executando experimento com {cfg} {repetition}/{repeat_count} ===\n")
 			subprocess.run(
 				["python", run_script, "--config", cfg, "--repeat", str(repetition)],
 				cwd=base_path,
 				check=True
-       		)
+        	)

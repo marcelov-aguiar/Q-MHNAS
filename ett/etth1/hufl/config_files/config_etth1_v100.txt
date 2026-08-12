@@ -8,12 +8,14 @@
 # Esse config e para executar com a correcao do calculo da metrica RMSE que estava por batch
 # Agora o calculo da metrica esta por amostra e não batch
 # v0 do ett baseado nas funcoes e configuracoes do turbofan
+# Semlhante ao v0 mas com correcao da metrica, alteracao das celulas LSTM, sequence_length e scheduler
+
 
 QNAS:
     crossover_rate: 0.5
-    max_generations: 20
+    max_generations: 6
     max_num_nodes: 6
-    num_quantum_ind: 4
+    num_quantum_ind: 1
     penalize_number: 3
     repetition: 5
     replace_method: best
@@ -41,9 +43,9 @@ QNAS:
         decay: 0.9
         learning_rate: 0.001
         weight_decay: 1.0e-4
-        lstm_1: [4, 20]
-        lstm_2: [4, 15]
-        sequence_length: [1, 30]
+        lstm_1: [4, 16]
+        lstm_2: [4, 16]
+        sequence_length: [1, 7]
 
     function_dict:  {
         'conv_1_1_4':  {'function': 'Conv1DBlock', 'params': {'kernel': 1, 'strides': 1, 'filters': 4}, 'prob': 1.0/16.0},
@@ -67,8 +69,8 @@ QNAS:
 train:
     batch_size: 64
     eval_batch_size: 64
-    max_epochs: 20
-    epochs_to_eval: 19
+    max_epochs: 2
+    epochs_to_eval: 1
     optimizer:
         name: RMSprop #RMSprop, Adam, AdamW, SGD
         params:
@@ -78,8 +80,8 @@ train:
             momentum: 0.0
             centered: True
     fitness_metric: best_loss
-    lr_scheduler: TFScheduler # for retrain
-    lr_scheduler_train: TFScheduler
+    lr_scheduler: reduce_on_plateau # for retrain
+    lr_scheduler_train: reduce_on_plateau
     criterion:
         name: MSELoss #CrossEntropyLoss, MSELoss, L1Loss, RMSELoss
         params:
@@ -91,9 +93,9 @@ train:
     allow_duplicate_architectures: False
 
     # Dataset
-    dataset: etth1_train
+    dataset: etth1_HUFL_train
     file_extension: parquet
-    exp_path_base: exp_etth1
+    exp_path_base: exp_etth1_hufl
     exp: exp_v100
     log_level: INFO
     repeat: 1 # repetions for search
@@ -129,21 +131,21 @@ train:
     # Params for retrain:
     batch_size_retrain: 64
     eval_batch_size_retrain: 64
-    max_epochs_retrain: 20
+    max_epochs_retrain: 30
     num_repetitions_retrain: 5 # repetions for retrain
 
     # problem-specific parameters
     extra_params:
         shared_head_architecture: True
         num_sensors: 7
-        dataset_test: etth1_test
+        dataset_test: etth1_HUFL_test
         file_extension_test: parquet
-        dataset_val: etth1_val
+        dataset_val: etth1_HUFL_val
         file_extension_val: parquet
         cols_non_sensor: ['unit_nr', 'Date']
         stride: 1
         in_channels: 1
-        lstm_multiplier: 20
+        lstm_multiplier: 8
         campaign_name: unit_nr
-        target_name: OT
+        target_name: HUFL
         save_predictions_to_txt: False

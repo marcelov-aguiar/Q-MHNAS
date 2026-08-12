@@ -17,7 +17,7 @@ if __name__ == "__main__":
 	config_files = [
 		# "etth1/hufl/config_files/config_etth1_v12.txt",
 		# "etth1/hufl/config_files/config_etth1_v13.txt"
-		"etth1/hufl/config_files/config_etth1_v14.txt",
+		# "etth1/hufl/config_files/config_etth1_v14.txt",
 		"etth1/hufl/config_files/config_etth1_v15.txt"
 	]
 	for cfg in config_files:
