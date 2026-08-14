@@ -490,7 +490,12 @@ def log_experiment_run(data_set: str,
                 logger.warning(f"⚠️ Failed to log best repeat parameters/metrics: {e}")
 
 
-def log_ett_miso_super_run(data_set: str, exp_name: str, targets_data: Dict[str, Dict[int, List[Dict[str, Any]]]], base_exp_path: str, config_data: Dict[str, Any], log_params_evolution: LogParamsEvolution):
+def log_ett_miso_super_run(data_set: str,
+                           exp_name: str,
+                           targets_data: Dict[str, Dict[int, List[Dict[str, Any]]]],
+                           base_exp_path: str,
+                           config_data: Dict[str, Any],
+                           log_params_evolution: LogParamsEvolution):
     """
     Função EXCLUSIVA para a base ETT. 
     Loga o experimento completo como um 'Super-Parent Run' contendo os 'Runs Alvo' aninhados,
@@ -508,7 +513,7 @@ def log_ett_miso_super_run(data_set: str, exp_name: str, targets_data: Dict[str,
         super_run_id = super_run.info.run_id
         
         target_best_mses = []
-        target_best_maes = []
+        target_best_rmses = []
         
         # 3. Itera sobre cada variável (OT, HUFL, HULL, etc.)
         for target_col, repeat_data in targets_data.items():
@@ -518,7 +523,10 @@ def log_ett_miso_super_run(data_set: str, exp_name: str, targets_data: Dict[str,
                 target_run_id = target_run.info.run_id
                 
                 best_mse_for_target = float('inf')
-                best_mae_for_target = float('inf')
+                best_rmse_for_target = float('inf')
+
+                sub_folder = f"exp_{data_set}_{target_col}"
+                correct_base_exp_path = Path(base_exp_path) / target_col / sub_folder
                 
                 # 4. Itera sobre as buscas do algoritmo evolucionário (search_1, search_2...)
                 for repeat_id, retrain_data_list in repeat_data.items():
@@ -526,7 +534,7 @@ def log_ett_miso_super_run(data_set: str, exp_name: str, targets_data: Dict[str,
                     # Reaproveitamos sua função existente, mudando apenas o parent_id
                     # para que os retreinos fiquem dentro do Run Alvo
                     log_repeat_run(
-                        base_exp_path=os.path.join(base_exp_path, target_col), 
+                        base_exp_path=correct_base_exp_path, 
                         repeat_id=repeat_id,
                         retrain_data_list=retrain_data_list,
                         parent_id=target_run_id,
@@ -538,28 +546,29 @@ def log_ett_miso_super_run(data_set: str, exp_name: str, targets_data: Dict[str,
                     # Lógica para encontrar o MELHOR retreino dentre todas as buscas deste target
                     # (Ajuste as chaves 'test_mse' e 'test_mae' conforme o nome que você usa no seu dict)
                     for retrain in retrain_data_list:
-                        mse = retrain.get("test_mse", float('inf'))
-                        mae = retrain.get("test_mae", float('inf'))
+                        metrics_dict = retrain.get("metrics", retrain)
+                        mse = metrics_dict.get("test_loss", float('inf'))
+                        rmse = metrics_dict.get("test_rmse", float('inf'))
                         if mse < best_mse_for_target:
                             best_mse_for_target = mse
-                            best_mae_for_target = mae
+                            best_rmse_for_target = rmse
                 
                 # Loga a melhor métrica encontrada para este target específico no nível do alvo
                 if best_mse_for_target != float('inf'):
                     mlflow.log_metric("best_target_mse", best_mse_for_target)
-                    mlflow.log_metric("best_target_mae", best_mae_for_target)
+                    mlflow.log_metric("best_target_rmse", best_rmse_for_target)
                     target_best_mses.append(best_mse_for_target)
-                    target_best_maes.append(best_mae_for_target)
+                    target_best_rmses.append(best_rmse_for_target)
                     
         # 5. Após rodar TODOS os targets, calcula a média global e loga no Super-Pai
         if target_best_mses:
             global_mse = sum(target_best_mses) / len(target_best_mses)
-            global_mae = sum(target_best_maes) / len(target_best_maes)
+            global_rmse = sum(target_best_rmses) / len(target_best_rmses)
             
             mlflow.log_metric("global_mse", global_mse)
-            mlflow.log_metric("global_mae", global_mae)
+            mlflow.log_metric("global_rmse", global_rmse)
             
-            logger.info(f"[{exp_name}] Concluído. Média Global MSE: {global_mse:.4f} | Média Global MAE: {global_mae:.4f}")
+            logger.info(f"[{exp_name}] Concluído. Média Global MSE: {global_mse:.4f} | Média Global MAE: {global_rmse:.4f}")
 
 
 
