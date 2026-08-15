@@ -5,18 +5,28 @@ Chama o run_evolution.py
 import subprocess
 import os
 from util import load_yaml
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 if __name__ == "__main__":
 	base_path = os.path.dirname(os.path.abspath(__file__))
 	
-	run_script = os.path.join(base_path, "run_evolution.py")
+	run_script = os.path.join(base_path, "run_evolution_dual_2.py")
 	# How to execute: LD_LIBRARY_PATH= python nome_do_arquivo.py
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		# "etth1/hufl/config_files/config_etth1_v10.txt",
-		# "etth1/hufl/config_files/config_etth1_v11.txt"
+		"etth1/mufl/config_files/config_etth1_v4.txt",
+		"etth1/mufl/config_files/config_etth1_v5.txt",
+		"etth1/mufl/config_files/config_etth1_v6.txt",
+		"etth1/mufl/config_files/config_etth1_v7.txt",
+		"etth1/mufl/config_files/config_etth1_v8.txt",
+		"etth1/mufl/config_files/config_etth1_v9.txt",
+		"etth1/mufl/config_files/config_etth1_v10.txt",
+		"etth1/mufl/config_files/config_etth1_v11.txt",
+		"etth1/mufl/config_files/config_etth1_v12.txt",
+		"etth1/mufl/config_files/config_etth1_v13.txt",
+		"etth1/mufl/config_files/config_etth1_v14.txt",
+		"etth1/mufl/config_files/config_etth1_v15.txt",
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

@@ -18,15 +18,33 @@ if __name__ == "__main__":
 		# "etth1/hull/config_files/config_etth1_v4.txt",
 		# "etth1/hull/config_files/config_etth1_v5.txt",
 		# "etth1/hull/config_files/config_etth1_v6.txt",
-		# "etth1/hull/config_files/config_etth1_v7.txt"
+		# "etth1/hull/config_files/config_etth1_v7.txt",
+		# "etth1/hull/config_files/config_etth1_v8.txt",
+		# "etth1/hull/config_files/config_etth1_v9.txt",
+		# "etth1/hull/config_files/config_etth1_v10.txt",
+		# "etth1/hull/config_files/config_etth1_v12.txt",
+		# "etth1/hull/config_files/config_etth1_v13.txt"
 
-		"etth1/hull/config_files/config_etth1_v11.txt"
-		"etth1/lufl/config_files/config_etth1_v4.txt",
-		"etth1/lufl/config_files/config_etth1_v5.txt",
-		"etth1/lufl/config_files/config_etth1_v6.txt",
-		"etth1/lufl/config_files/config_etth1_v7.txt",
-		"etth1/lufl/config_files/config_etth1_v8.txt",
-		"etth1/lufl/config_files/config_etth1_v9.txt"
+		# "etth1/hull/config_files/config_etth1_v11.txt",
+		# "etth1/lufl/config_files/config_etth1_v4.txt",
+		# "etth1/lufl/config_files/config_etth1_v5.txt",
+		# "etth1/lufl/config_files/config_etth1_v6.txt",
+		# "etth1/lufl/config_files/config_etth1_v7.txt",
+		# "etth1/lufl/config_files/config_etth1_v8.txt",
+		# "etth1/lufl/config_files/config_etth1_v9.txt",
+		# "etth1/lufl/config_files/config_etth1_v10.txt"
+
+		"etth1/lufl/config_files/config_etth1_v11.txt",
+		"etth1/lufl/config_files/config_etth1_v12.txt",
+		"etth1/lufl/config_files/config_etth1_v13.txt",
+		"etth1/lufl/config_files/config_etth1_v14.txt",
+		"etth1/lufl/config_files/config_etth1_v15.txt",
+
+		"etth1/hufl/config_files/config_etth1_v11.txt",
+		"etth1/hull/config_files/config_etth1_v13.txt",
+
+		"etth1/hull/config_files/config_etth1_v14.txt",
+		"etth1/hull/config_files/config_etth1_v15.txt",
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)
