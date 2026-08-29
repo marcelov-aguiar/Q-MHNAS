@@ -103,7 +103,7 @@ train:
     exp_path_base: exp_etth1_lull
     exp: exp_v7
     log_level: INFO
-    repeat: 3 # repetions for search
+    repeat: 2 # repetions for search
     dataloader_class: Etth1MultiHeadDataLoader
 
     data_augmentation: False
@@ -123,7 +123,7 @@ train:
     # Tensorflow
     save_checkpoints_epochs: 5
     save_summary_epochs: 0.25
-    threads: 3
+    threads: 1
 
     # penalization parameters - scalarized fitness
     max_params: 114090 # 1.9M

@@ -5,20 +5,20 @@ Chama o run_evolution.py
 import subprocess
 import os
 from util import load_yaml
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 if __name__ == "__main__":
 	base_path = os.path.dirname(os.path.abspath(__file__))
 	
-	run_script = os.path.join(base_path, "run_evolution_dual_2.py")
+	run_script = os.path.join(base_path, "run_evolution.py")
 	# How to execute: LD_LIBRARY_PATH= python nome_do_arquivo.py
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		# "etth1/hufl/config_files/config_etth1_v12.txt",
-		# "etth1/hufl/config_files/config_etth1_v13.txt"
-		# "etth1/hufl/config_files/config_etth1_v14.txt",
-		"etth1/hufl/config_files/config_etth1_v15.txt" # uma rodada deu erro, precisa rodar de novo
+		# Esses experimentos estão rodando na dualGPU 156 GPU 1 no Lira
+		"etth1/mufl/config_files/config_etth1_v12.txt",
+		"etth1/mufl/config_files/config_etth1_v13.txt",
+		"etth1/mufl/config_files/config_etth1_v14.txt",
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

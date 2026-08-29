@@ -34,15 +34,14 @@ if __name__ == "__main__":
 		# "etth1/lufl/config_files/config_etth1_v9.txt",
 		# "etth1/lufl/config_files/config_etth1_v10.txt"
 
-		"etth1/lufl/config_files/config_etth1_v11.txt",
-		"etth1/lufl/config_files/config_etth1_v12.txt",
+		# "etth1/lufl/config_files/config_etth1_v11.txt",
+		# "etth1/lufl/config_files/config_etth1_v12.txt",
 		"etth1/lufl/config_files/config_etth1_v13.txt",
 		"etth1/lufl/config_files/config_etth1_v14.txt",
 		"etth1/lufl/config_files/config_etth1_v15.txt",
 
 		"etth1/hufl/config_files/config_etth1_v11.txt",
 		"etth1/hull/config_files/config_etth1_v13.txt",
-
 		"etth1/hull/config_files/config_etth1_v14.txt",
 		"etth1/hull/config_files/config_etth1_v15.txt",
 	]

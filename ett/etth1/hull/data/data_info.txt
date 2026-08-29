@@ -1,7 +1,7 @@
-dataset: etth1_train
+dataset: etth1_HULL_train
 num_classes: 168
 num_sensors: 7
-seed: 1772454155
+seed: 1787020304
 shape:
 - null
 - null
