@@ -17,6 +17,8 @@ if __name__ == "__main__":
 	config_files = [
 		# "etth1/hufl/config_files/config_etth1_v10.txt",
 		# "etth1/hufl/config_files/config_etth1_v11.txt"
+		# "etth1/lull/config_files/config_etth1_v10.txt"
+		# "etth1/lull/config_files/config_etth1_v11.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

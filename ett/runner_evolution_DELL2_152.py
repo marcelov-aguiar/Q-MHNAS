@@ -16,6 +16,9 @@ if __name__ == "__main__":
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
 		# "etth1/lull/config_files/config_etth1_v4.txt",
+		# "etth1/mufl/config_files/config_etth1_v13.txt",
+		# "etth1/mufl/config_files/config_etth1_v14.txt",
+		"etth1/mufl/config_files/config_etth1_v15.txt", # Está dividindo com 156_1 (geracao 56)
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

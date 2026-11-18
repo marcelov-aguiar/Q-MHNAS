@@ -16,9 +16,11 @@ if __name__ == "__main__":
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
 		# Esses experimentos estão rodando na dualGPU 156 GPU 1 no Lira
-		"etth1/mufl/config_files/config_etth1_v12.txt",
-		"etth1/mufl/config_files/config_etth1_v13.txt",
-		"etth1/mufl/config_files/config_etth1_v14.txt",
+		# "etth1/mufl/config_files/config_etth1_v12.txt",
+		# "etth1/hull/config_files/config_etth1_v13.txt",
+		# "etth1/mufl/config_files/config_etth1_v11.txt",
+		# "etth1/lull/config_files/config_etth1_v15.txt"
+		"etth1/mufl/config_files/config_etth1_v15.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

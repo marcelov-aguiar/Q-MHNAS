@@ -22,12 +22,13 @@ if __name__ == "__main__":
 		# "etth1/mull/config_files/config_etth1_v7.txt",
 		# "etth1/mull/config_files/config_etth1_v8.txt",
 		# "etth1/mull/config_files/config_etth1_v9.txt",
-		"etth1/mull/config_files/config_etth1_v10.txt",
-		"etth1/mull/config_files/config_etth1_v11.txt",
-		"etth1/mull/config_files/config_etth1_v12.txt",
-		"etth1/mull/config_files/config_etth1_v13.txt",
-		"etth1/mull/config_files/config_etth1_v14.txt",
-		"etth1/mull/config_files/config_etth1_v15.txt",
+		# "etth1/mull/config_files/config_etth1_v10.txt",
+		# "etth1/mull/config_files/config_etth1_v11.txt",
+		# "etth1/mull/config_files/config_etth1_v12.txt",
+		# "etth1/mull/config_files/config_etth1_v13.txt",
+		# "etth1/mull/config_files/config_etth1_v14.txt",
+		# "etth1/mull/config_files/config_etth1_v15.txt", # está no dell 1 152
+		# "etth1/hull/config_files/config_etth1_v15.txt"
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

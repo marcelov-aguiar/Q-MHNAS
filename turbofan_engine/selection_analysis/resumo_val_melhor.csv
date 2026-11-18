@@ -1,0 +1,101 @@
+id,estrategia,rmse_teste_melhor,n_buscas,busca_teste,busca_val,mesma_busca,rmse_teste_media_busca_teste,rmse_teste_desvio_busca_teste,rmse_teste_media_busca_val,rmse_teste_desvio_busca_val,diferenca,EP,diferenca_sobre_EP,p_valor_welch,significativa,conclusao
+FD001/exp_v29,SCH,10.9989,4,4,1,False,11.9774,0.9326,12.9194,0.8362,0.9421,0.5602,1.6817,0.1316,False,"busca diferente: diferença NÃO significativa (dif=+0.94, p=0.13)"
+FD002/exp_v17,SCH,17.0519,4,4,4,True,17.4277,0.3852,17.4277,0.3852,,,,,,mesma busca: sem diferença
+FD003/exp_v12,SCH,10.9936,4,2,1,False,13.0214,1.2875,13.1848,0.6773,0.1634,0.6506,0.2512,0.8100,False,"busca diferente: diferença NÃO significativa (dif=+0.16, p=0.81)"
+FD004/exp_v13,SCH,19.5155,3,3,2,False,20.6124,0.8581,20.7222,0.7190,0.1097,0.5007,0.2192,0.8322,False,"busca diferente: diferença NÃO significativa (dif=+0.11, p=0.83)"
+FD001/exp_v54,ICH,10.9183,3,1,2,False,12.2334,0.8833,13.5681,1.7218,1.3346,0.8654,1.5422,0.1742,False,"busca diferente: diferença NÃO significativa (dif=+1.33, p=0.17)"
+FD002/exp_v23,ICH,17.2059,4,3,4,False,18.1261,0.7928,18.0058,0.6027,-0.1203,0.4454,-0.2701,0.7944,False,"busca diferente: diferença NÃO significativa (dif=-0.12, p=0.79)"
+FD003/exp_v27,ICH,11.3372,3,2,1,False,11.7842,0.3758,12.3008,0.4495,0.5166,0.2620,1.9715,0.0853,False,"busca diferente: diferença NÃO significativa (dif=+0.52, p=0.09)"
+FD004/exp_v35,ICH,19.6685,3,3,3,True,20.3418,0.4833,20.3418,0.4833,,,,,,mesma busca: sem diferença
+FD001/exp_v5,SCH,11.4448,4,2,1,False,13.2232,1.6773,13.9693,1.5736,0.7461,1.0286,0.7254,0.4890,False,"busca diferente: diferença NÃO significativa (dif=+0.75, p=0.49)"
+FD001/exp_v8,SCH,11.4942,4,2,3,False,12.9737,1.3606,13.7898,1.3186,0.8161,0.8474,0.9631,0.3637,False,"busca diferente: diferença NÃO significativa (dif=+0.82, p=0.36)"
+FD001/exp_v32,SCH,12.1717,4,3,4,False,12.8269,0.6178,13.6395,0.9184,0.8126,0.4950,1.6416,0.1446,False,"busca diferente: diferença NÃO significativa (dif=+0.81, p=0.14)"
+FD001/exp_v10,SCH,11.4983,4,4,2,False,14.1650,1.9495,14.3466,1.1385,0.1816,1.0096,0.1799,0.8627,False,"busca diferente: diferença NÃO significativa (dif=+0.18, p=0.86)"
+FD001/exp_v34,SCH,11.4720,4,1,2,False,12.7986,1.4916,12.6457,0.8647,-0.1529,0.7710,-0.1983,0.8490,False,"busca diferente: diferença NÃO significativa (dif=-0.15, p=0.85)"
+FD001/exp_v59,SCH,11.3837,3,1,2,False,13.3725,1.7078,13.1704,1.0131,-0.2021,0.8880,-0.2276,0.8269,False,"busca diferente: diferença NÃO significativa (dif=-0.20, p=0.83)"
+FD001/exp_v60,SCH,11.2726,3,1,1,True,12.1912,0.6338,12.1912,0.6338,,,,,,mesma busca: sem diferença
+FD001/exp_v17,SCH,11.7881,3,1,1,True,13.0576,1.2242,13.0576,1.2242,,,,,,mesma busca: sem diferença
+FD001/exp_v41,SCH,11.0780,3,1,3,False,12.2537,0.8162,13.2524,0.8647,0.9987,0.5318,1.8780,0.0973,False,"busca diferente: diferença NÃO significativa (dif=+1.00, p=0.10)"
+FD001/exp_v19,SCH,12.0257,3,1,2,False,12.7559,0.7505,14.0946,1.2339,1.3387,0.6459,2.0727,0.0793,False,"busca diferente: diferença NÃO significativa (dif=+1.34, p=0.08)"
+FD001/exp_v43,SCH,11.4997,3,3,3,True,12.7087,0.8400,12.7087,0.8400,,,,,,mesma busca: sem diferença
+FD002/exp_v7,SCH,17.3072,4,4,4,True,17.6042,0.3537,17.6042,0.3537,,,,,,mesma busca: sem diferença
+FD002/exp_v5,SCH,17.1935,4,2,2,True,18.2862,0.6128,18.2862,0.6128,,,,,,mesma busca: sem diferença
+FD002/exp_v15,SCH,17.1523,4,3,4,False,18.1347,0.9436,17.8524,0.6824,-0.2823,0.5208,-0.5421,0.6039,False,"busca diferente: diferença NÃO significativa (dif=-0.28, p=0.60)"
+FD002/exp_v30,SCH,17.1836,4,2,3,False,18.0557,0.6195,18.6293,0.6105,0.5736,0.3890,1.4746,0.1786,False,"busca diferente: diferença NÃO significativa (dif=+0.57, p=0.18)"
+FD002/exp_v31,SCH,17.2664,4,1,1,True,18.0693,0.9388,18.0693,0.9388,,,,,,mesma busca: sem diferença
+FD002/exp_v10,SCH,17.3642,3,3,2,False,18.2140,0.7003,18.2697,0.7943,0.0558,0.4736,0.1177,0.9092,False,"busca diferente: diferença NÃO significativa (dif=+0.06, p=0.91)"
+FD002/exp_v20,SCH,17.3305,3,2,2,True,18.1893,0.8913,18.1893,0.8913,,,,,,mesma busca: sem diferença
+FD002/exp_v4,SCH,17.3389,4,3,4,False,18.0136,0.6444,17.9193,0.2289,-0.0943,0.3058,-0.3082,0.7703,False,"busca diferente: diferença NÃO significativa (dif=-0.09, p=0.77)"
+FD002/exp_v14,SCH,17.4793,4,3,3,True,18.2662,0.5456,18.2662,0.5456,,,,,,mesma busca: sem diferença
+FD002/exp_v6,SCH,17.0574,4,1,2,False,18.1255,0.9248,18.1708,0.5016,0.0453,0.4705,0.0962,0.9264,False,"busca diferente: diferença NÃO significativa (dif=+0.05, p=0.93)"
+FD002/exp_v16,SCH,17.1406,4,2,2,True,18.3392,0.8879,18.3392,0.8879,,,,,,mesma busca: sem diferença
+FD003/exp_v2,SCH,11.3097,4,2,4,False,12.8264,1.1375,12.3807,0.3325,-0.4457,0.5300,-0.8409,0.4412,False,"busca diferente: diferença NÃO significativa (dif=-0.45, p=0.44)"
+FD003/exp_v6,SCH,11.8405,4,3,4,False,13.1088,1.1370,13.6832,0.3596,0.5744,0.5333,1.0770,0.3327,False,"busca diferente: diferença NÃO significativa (dif=+0.57, p=0.33)"
+FD003/exp_v16,SCH,11.8352,4,4,4,True,12.8226,0.7512,12.8226,0.7512,,,,,,mesma busca: sem diferença
+FD003/exp_v29,SCH,11.3707,3,1,1,True,12.4902,0.7444,12.4902,0.7444,,,,,,mesma busca: sem diferença
+FD003/exp_v30,SCH,11.0961,3,1,2,False,12.6692,1.2247,12.9572,0.4037,0.2880,0.5767,0.4994,0.6393,False,"busca diferente: diferença NÃO significativa (dif=+0.29, p=0.64)"
+FD003/exp_v9,SCH,11.5088,3,1,2,False,13.4843,1.3074,12.4381,0.4748,-1.0462,0.6220,-1.6819,0.1530,False,"busca diferente: diferença NÃO significativa (dif=-1.05, p=0.15)"
+FD003/exp_v19,SCH,11.3587,3,3,3,True,12.5885,1.0881,12.5885,1.0881,,,,,,mesma busca: sem diferença
+FD003/exp_v4,SCH,11.8223,4,4,3,False,12.7761,0.5850,13.4714,0.9167,0.6953,0.4863,1.4297,0.1971,False,"busca diferente: diferença NÃO significativa (dif=+0.70, p=0.20)"
+FD003/exp_v14,SCH,12.1598,4,2,3,False,12.6691,0.5879,13.3363,0.9543,0.6672,0.5013,1.3310,0.2270,False,"busca diferente: diferença NÃO significativa (dif=+0.67, p=0.23)"
+FD003/exp_v5,SCH,11.8077,4,2,1,False,12.8316,1.0681,13.6304,0.8303,0.7988,0.6050,1.3203,0.2254,False,"busca diferente: diferença NÃO significativa (dif=+0.80, p=0.23)"
+FD003/exp_v15,SCH,11.1121,4,3,1,False,12.8364,1.3142,12.1999,0.4376,-0.6365,0.6195,-1.0275,0.3524,False,"busca diferente: diferença NÃO significativa (dif=-0.64, p=0.35)"
+FD004/exp_v2,SCH,20.1371,3,3,2,False,20.9357,0.6597,20.7657,0.8212,-0.1699,0.4711,-0.3608,0.7281,False,"busca diferente: diferença NÃO significativa (dif=-0.17, p=0.73)"
+FD004/exp_v6,SCH,19.8748,4,4,3,False,20.7462,0.7020,20.3080,0.3647,-0.4382,0.3538,-1.2387,0.2616,False,"busca diferente: diferença NÃO significativa (dif=-0.44, p=0.26)"
+FD004/exp_v17,SCH,19.7727,4,3,1,False,20.6588,0.5367,20.6286,0.4597,-0.0302,0.3160,-0.0955,0.9263,False,"busca diferente: diferença NÃO significativa (dif=-0.03, p=0.93)"
+FD004/exp_v7,SCH,19.8330,3,3,3,True,20.5025,0.5552,20.5025,0.5552,,,,,,mesma busca: sem diferença
+FD004/exp_v18,SCH,19.7698,3,3,1,False,20.5433,0.4696,21.0126,0.4796,0.4693,0.3002,1.5636,0.1566,False,"busca diferente: diferença NÃO significativa (dif=+0.47, p=0.16)"
+FD004/exp_v11,SCH,19.6244,3,2,2,True,20.2338,0.3627,20.2338,0.3627,,,,,,mesma busca: sem diferença
+FD004/exp_v22,SCH,19.9367,3,2,1,False,20.4085,0.4054,20.6865,0.4859,0.2780,0.2830,0.9824,0.3556,False,"busca diferente: diferença NÃO significativa (dif=+0.28, p=0.36)"
+FD004/exp_v4,SCH,19.8694,4,4,4,True,20.4940,0.5367,20.4940,0.5367,,,,,,mesma busca: sem diferença
+FD004/exp_v15,SCH,20.3694,4,1,4,False,21.3848,0.8124,20.7603,0.3183,-0.6245,0.3902,-1.6005,0.1682,False,"busca diferente: diferença NÃO significativa (dif=-0.62, p=0.17)"
+FD004/exp_v5,SCH,19.6830,4,1,4,False,20.5491,0.5468,20.6562,0.3341,0.1071,0.2866,0.3737,0.7203,False,"busca diferente: diferença NÃO significativa (dif=+0.11, p=0.72)"
+FD004/exp_v16,SCH,19.7534,4,1,2,False,20.2347,0.4494,20.7881,0.5504,0.5534,0.3178,1.7415,0.1213,False,"busca diferente: diferença NÃO significativa (dif=+0.55, p=0.12)"
+FD001/exp_v55,SCH,11.0420,3,2,2,True,12.0364,0.6616,12.0364,0.6616,,,,,,mesma busca: sem diferença
+FD001/exp_v61,ICH,11.1416,3,2,3,False,11.8542,0.5747,13.7800,0.6855,1.9259,0.4001,4.8140,0.0014,True,"busca diferente: diferença significativa (dif=+1.93, p=0.00)"
+FD001/exp_v62,ICH,11.4393,3,3,2,False,12.5205,1.2225,12.8210,1.2238,0.3005,0.7736,0.3885,0.7078,False,"busca diferente: diferença NÃO significativa (dif=+0.30, p=0.71)"
+FD001/exp_v52,ICH,11.6667,3,1,1,True,12.3335,0.4936,12.3335,0.4936,,,,,,mesma busca: sem diferença
+FD001/exp_v63,ICH,11.4710,3,3,1,False,12.1582,0.4765,13.1470,1.1325,0.9888,0.5495,1.7995,0.1278,False,"busca diferente: diferença NÃO significativa (dif=+0.99, p=0.13)"
+FD002/exp_v24,SCH,17.0545,3,1,1,True,17.7492,0.4478,17.7492,0.4478,,,,,,mesma busca: sem diferença
+FD002/exp_v19,ICH,17.3455,3,2,3,False,18.1239,0.7605,18.0401,0.3752,-0.0838,0.3792,-0.2210,0.8326,False,"busca diferente: diferença NÃO significativa (dif=-0.08, p=0.83)"
+FD002/exp_v28,ICH,17.5515,3,1,2,False,18.2177,0.9709,18.4511,0.5345,0.2333,0.4956,0.4708,0.6539,False,"busca diferente: diferença NÃO significativa (dif=+0.23, p=0.65)"
+FD002/exp_v21,ICH,17.3178,3,1,1,True,18.2111,0.5769,18.2111,0.5769,,,,,,mesma busca: sem diferença
+FD002/exp_v29,ICH,17.5509,3,1,1,True,17.9564,0.3011,17.9564,0.3011,,,,,,mesma busca: sem diferença
+FD003/exp_v23,SCH,12.0048,3,1,2,False,13.2494,0.9317,13.3301,0.4602,0.0807,0.4647,0.1736,0.8681,False,"busca diferente: diferença NÃO significativa (dif=+0.08, p=0.87)"
+FD003/exp_v20,ICH,11.6348,3,3,3,True,13.1466,1.3289,13.1466,1.3289,,,,,,mesma busca: sem diferença
+FD003/exp_v26,ICH,11.9573,3,1,3,False,12.6505,0.8291,13.3006,0.4156,0.6501,0.4148,1.5675,0.1690,False,"busca diferente: diferença NÃO significativa (dif=+0.65, p=0.17)"
+FD003/exp_v18,ICH,11.4183,3,2,3,False,12.9333,1.0542,13.1663,0.8330,0.2330,0.6009,0.3877,0.7089,False,"busca diferente: diferença NÃO significativa (dif=+0.23, p=0.71)"
+FD004/exp_v25,SCH,20.1772,3,1,3,False,20.4912,0.2747,20.9782,0.3346,0.4870,0.1936,2.5153,0.0371,True,"busca diferente: diferença significativa (dif=+0.49, p=0.04)"
+FD004/exp_v21,ICH,20.0376,3,3,3,True,20.6452,0.4552,20.6452,0.4552,,,,,,mesma busca: sem diferença
+FD004/exp_v32,ICH,20.1421,3,1,1,True,20.4392,0.4168,20.4392,0.4168,,,,,,mesma busca: sem diferença
+FD004/exp_v23,ICH,20.1752,3,3,2,False,20.5348,0.3528,20.6755,0.3686,0.1407,0.2282,0.6165,0.5547,False,"busca diferente: diferença NÃO significativa (dif=+0.14, p=0.55)"
+FD004/exp_v33,ICH,19.6953,3,1,1,True,20.4215,0.4396,20.4215,0.4396,,,,,,mesma busca: sem diferença
+FD001/exp_v57,SCH,12.9614,1,1,1,,14.2047,1.6402,14.2047,1.6402,,,,,,busca única: sem comparação
+FD002/exp_v3,SCH,17.7442,1,1,1,,18.3819,0.7742,18.3819,0.7742,,,,,,busca única: sem comparação
+FD002/exp_v2,SCH,17.8957,1,1,1,,18.3742,0.3492,18.3742,0.3492,,,,,,busca única: sem comparação
+FD002/exp_v13,SCH,17.3104,3,3,2,False,17.9161,0.4841,18.5094,0.3519,0.5933,0.2677,2.2165,0.0606,False,"busca diferente: diferença NÃO significativa (dif=+0.59, p=0.06)"
+FD003/exp_v13,SCH,12.4000,1,1,1,,14.2401,1.5713,14.2401,1.5713,,,,,,busca única: sem comparação
+FD004/exp_v14,SCH,20.0049,4,3,4,False,20.7644,0.6524,20.3677,0.3797,-0.3967,0.3376,-1.1753,0.2815,False,"busca diferente: diferença NÃO significativa (dif=-0.40, p=0.28)"
+FD004/exp_v31,SCH,20.1567,3,3,1,False,21.0090,0.6574,21.0209,0.4727,0.0119,0.3621,0.0329,0.9747,False,"busca diferente: diferença NÃO significativa (dif=+0.01, p=0.97)"
+FD001/exp_v46,ICH,12.4923,3,2,1,False,13.1901,0.5387,13.1550,0.4481,-0.0351,0.3134,-0.1120,0.9137,False,"busca diferente: diferença NÃO significativa (dif=-0.04, p=0.91)"
+FD001/exp_v47,ICH,11.9725,3,2,2,True,12.8858,0.7933,12.8858,0.7933,,,,,,mesma busca: sem diferença
+FD001/exp_v48,ICH,11.7486,3,1,3,False,12.4155,0.5783,12.1532,0.3153,-0.2623,0.2946,-0.8904,0.4066,False,"busca diferente: diferença NÃO significativa (dif=-0.26, p=0.41)"
+FD001/exp_v49,SCH,11.6668,3,2,1,False,12.6060,0.9205,13.0719,0.6043,0.4659,0.4924,0.9461,0.3760,False,"busca diferente: diferença NÃO significativa (dif=+0.47, p=0.38)"
+FD001/exp_v51,ICH,11.8872,3,3,3,True,12.8273,0.6728,12.8273,0.6728,,,,,,mesma busca: sem diferença
+FD001/exp_v50,SCH,11.1588,3,1,1,True,12.6118,0.9859,12.6118,0.9859,,,,,,mesma busca: sem diferença
+FD002/exp_v18,SCH,17.4237,3,3,3,True,18.2170,0.8629,18.2170,0.8629,,,,,,mesma busca: sem diferença
+FD003/exp_v21,SCH,11.9756,3,3,1,False,13.2104,0.7258,12.8889,0.5807,-0.3215,0.4157,-0.7734,0.4626,False,"busca diferente: diferença NÃO significativa (dif=-0.32, p=0.46)"
+FD004/exp_v20,SCH,20.2633,3,3,1,False,21.0556,0.5349,20.9916,0.5126,-0.0640,0.3313,-0.1933,0.8516,False,"busca diferente: diferença NÃO significativa (dif=-0.06, p=0.85)"
+FD001/exp_v66,ICH,11.8442,3,2,2,True,13.2039,0.8967,13.2039,0.8967,,,,,,mesma busca: sem diferença
+FD001/exp_v64,ICH,11.5492,3,3,2,False,12.5380,1.0979,12.6843,0.4748,0.1463,0.5349,0.2735,0.7945,False,"busca diferente: diferença NÃO significativa (dif=+0.15, p=0.79)"
+FD002/exp_v22,ICH,17.2508,3,2,2,True,18.0044,0.7554,18.0044,0.7554,,,,,,mesma busca: sem diferença
+FD003/exp_v28,ICH,11.5369,3,2,2,True,12.3308,0.8627,12.3308,0.8627,,,,,,mesma busca: sem diferença
+FD003/exp_v22,ICH,11.8124,3,3,1,False,12.8396,0.7097,12.4408,1.0768,-0.3988,0.5768,-0.6915,0.5118,False,"busca diferente: diferença NÃO significativa (dif=-0.40, p=0.51)"
+FD004/exp_v34,ICH,20.0748,3,1,2,False,20.6383,0.4589,20.9659,0.4711,0.3277,0.2941,1.1141,0.2976,False,"busca diferente: diferença NÃO significativa (dif=+0.33, p=0.30)"
+FD004/exp_v24,ICH,20.2131,3,2,3,False,20.4754,0.3167,20.7999,0.3787,0.3244,0.2208,1.4696,0.1810,False,"busca diferente: diferença NÃO significativa (dif=+0.32, p=0.18)"
+FD001/exp_v56,SCH,11.3902,3,1,3,False,12.1808,0.6907,12.5034,0.2792,0.3226,0.3332,0.9684,0.3751,False,"busca diferente: diferença NÃO significativa (dif=+0.32, p=0.38)"
+FD001/exp_v31,SCH,11.5470,4,1,4,False,11.8511,0.2331,12.9122,0.8857,1.0611,0.4096,2.5906,0.0534,False,"busca diferente: diferença NÃO significativa (dif=+1.06, p=0.05)"
+FD001/exp_v33,SCH,11.3245,4,2,3,False,12.2280,0.9410,13.3088,1.2748,1.0808,0.7086,1.5252,0.1689,False,"busca diferente: diferença NÃO significativa (dif=+1.08, p=0.17)"
+FD002/exp_v27,SCH,17.0530,3,1,1,True,17.5925,0.5335,17.5925,0.5335,,,,,,mesma busca: sem diferença
+FD003/exp_v25,SCH,11.5480,3,2,2,True,12.9878,1.0673,12.9878,1.0673,,,,,,mesma busca: sem diferença
+FD004/exp_v30,SCH,19.9777,3,2,3,False,20.7717,0.6340,20.6348,0.3745,-0.1369,0.3293,-0.4156,0.6911,False,"busca diferente: diferença NÃO significativa (dif=-0.14, p=0.69)"

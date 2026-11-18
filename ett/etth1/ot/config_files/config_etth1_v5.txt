@@ -99,7 +99,7 @@ train:
     # Dataset
     dataset: etth1_train
     file_extension: parquet
-    exp_path_base: exp_etth1
+    exp_path_base: exp_etth1_ot
     exp: exp_v5
     log_level: INFO
     repeat: 3 # repetions for search

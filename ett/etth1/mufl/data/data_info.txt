@@ -1,0 +1,12 @@
+dataset: etth1_MUFL_train
+num_classes: 336
+num_sensors: 7
+seed: 1790046154
+shape:
+- null
+- null
+- null
+task: regression
+test_records: 2137
+train_records: 7897
+valid_records: 2137

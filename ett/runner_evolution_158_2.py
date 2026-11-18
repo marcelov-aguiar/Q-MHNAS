@@ -18,7 +18,8 @@ if __name__ == "__main__":
 		# "etth1/hufl/config_files/config_etth1_v12.txt",
 		# "etth1/hufl/config_files/config_etth1_v13.txt"
 		# "etth1/hufl/config_files/config_etth1_v14.txt",
-		"etth1/hufl/config_files/config_etth1_v15.txt" # uma rodada deu erro, precisa rodar de novo
+		# "etth1/hufl/config_files/config_etth1_v15.txt"
+		"etth1/hull/config_files/config_etth1_v14.txt", # última rodada na geracao 55
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

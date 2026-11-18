@@ -504,6 +504,8 @@ def log_ett_miso_super_run(data_set: str,
     targets_data: Dicionário contendo o repeat_data de cada variável.
                   Ex: {"OT": repeat_data_ot, "HUFL": repeat_data_hufl, ...}
     """
+    base_exp_path = Path(base_exp_path)
+
     # 1. Define o nome do experimento unificado para o dataset (ex: ETT_MISO_NAS)
     experiment_name = f"{data_set}_MISO_NAS"
     mlflow.set_experiment(experiment_name)
@@ -525,12 +527,23 @@ def log_ett_miso_super_run(data_set: str,
                 best_mse_for_target = float('inf')
                 best_rmse_for_target = float('inf')
 
-                sub_folder = f"exp_{data_set}_{target_col}"
-                correct_base_exp_path = Path(base_exp_path) / target_col / sub_folder
+                exp_path_base_config = f"exp_{data_set}_{target_col}"
+
+                correct_base_exp_path = base_exp_path / target_col / exp_path_base_config
                 
                 # 4. Itera sobre as buscas do algoritmo evolucionário (search_1, search_2...)
                 for repeat_id, retrain_data_list in repeat_data.items():
-                    
+
+                    repeat_dir = correct_base_exp_path / f"{exp_name}_repeat_{repeat_id}"
+                    log_params_evolution_path = repeat_dir / names.LOG_PARAMS_EVOLUTION_TXT
+
+                    # 2. Instancia a classe apenas se o arquivo existir no disco
+                    if log_params_evolution_path.exists():
+                        log_params_evolution = LogParamsEvolution(log_params_evolution_path)
+                    else:
+                        logger.warning(f"⚠️ Arquivo {names.LOG_PARAMS_EVOLUTION_TXT} não encontrado em: {log_params_evolution_path}")
+                        log_params_evolution = None
+
                     # Reaproveitamos sua função existente, mudando apenas o parent_id
                     # para que os retreinos fiquem dentro do Run Alvo
                     log_repeat_run(

@@ -33,17 +33,17 @@ if __name__ == "__main__":
 		# "etth1/lufl/config_files/config_etth1_v8.txt",
 		# "etth1/lufl/config_files/config_etth1_v9.txt",
 		# "etth1/lufl/config_files/config_etth1_v10.txt"
-
+		# "etth1/hull/config_files/config_etth1_v15.txt" # Dividindo com 156_2
 		# "etth1/lufl/config_files/config_etth1_v11.txt",
 		# "etth1/lufl/config_files/config_etth1_v12.txt",
-		"etth1/lufl/config_files/config_etth1_v13.txt",
-		"etth1/lufl/config_files/config_etth1_v14.txt",
-		"etth1/lufl/config_files/config_etth1_v15.txt",
+		# "etth1/lufl/config_files/config_etth1_v13.txt",
+		# "etth1/lufl/config_files/config_etth1_v14.txt",
+		# "etth1/lufl/config_files/config_etth1_v15.txt",
 
-		"etth1/hufl/config_files/config_etth1_v11.txt",
-		"etth1/hull/config_files/config_etth1_v13.txt",
-		"etth1/hull/config_files/config_etth1_v14.txt",
-		"etth1/hull/config_files/config_etth1_v15.txt",
+		# "etth1/hufl/config_files/config_etth1_v11.txt", # Dell G15 está rodando uma rodada
+		# "etth1/hull/config_files/config_etth1_v13.txt", Está na Lira 156 1
+		# "etth1/hull/config_files/config_etth1_v14.txt",  Está na Lira 158 2
+		# "etth1/hull/config_files/config_etth1_v15.txt",  Está na Lira 152 0
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

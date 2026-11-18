@@ -17,8 +17,7 @@ if __name__ == "__main__":
 	config_files = [
 		# "etth1/lull/config_files/config_etth1_v5.txt",
 		# "etth1/lull/config_files/config_etth1_v6.txt",
-		"etth1/lull/config_files/config_etth1_v14.txt",
-		"etth1/lull/config_files/config_etth1_v15.txt"
+		# "etth1/lull/config_files/config_etth1_v14.txt",
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

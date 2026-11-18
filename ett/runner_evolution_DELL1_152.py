@@ -15,19 +15,7 @@ if __name__ == "__main__":
 	# config_dir = os.path.join(base_path, "config_files")
 	# config_files = [f for f in os.listdir(config_dir) if f.endswith(".txt")]
 	config_files = [
-		# Esses experimentos estao executando no PC da patricia
-		# "etth1/mufl/config_files/config_etth1_v4.txt",
-		# "etth1/mufl/config_files/config_etth1_v5.txt",
-		# "etth1/mufl/config_files/config_etth1_v6.txt",
-		"etth1/mufl/config_files/config_etth1_v7.txt", # Precisará rodar mais uma rodada
-		"etth1/mufl/config_files/config_etth1_v8.txt",
-		"etth1/mufl/config_files/config_etth1_v9.txt",
-		"etth1/mufl/config_files/config_etth1_v10.txt",
-		"etth1/mufl/config_files/config_etth1_v11.txt",
-		# "etth1/mufl/config_files/config_etth1_v12.txt", Estão rodando na maquina do Lira
-		# "etth1/mufl/config_files/config_etth1_v13.txt", Estão rodando na maquina do Lira
-		# "etth1/mufl/config_files/config_etth1_v14.txt", Estão rodando na maquina do Lira
-		"etth1/mufl/config_files/config_etth1_v15.txt",
+		"etth1/mull/config_files/config_etth1_v15.txt", # geracao 40
 	]
 	for cfg in config_files:
 		config_path = os.path.join(base_path, cfg)

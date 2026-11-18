@@ -1,0 +1,12 @@
+dataset: etth1_MULL_train
+num_classes: 336
+num_sensors: 7
+seed: 1792216469
+shape:
+- null
+- null
+- null
+task: regression
+test_records: 2185
+train_records: 7945
+valid_records: 2185
